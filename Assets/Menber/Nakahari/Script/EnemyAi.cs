@@ -5,18 +5,34 @@ using UnityEngine.AI;
 
 public class EnemyAi : MonoBehaviour
 {
-    [SerializeField]
-    Transform target;
+    // Aiの状態
+    enum State{
+        battle,
+        eat,
+        skil,
+    };
 
-    NavMeshAgent agent;
-    // Start is called before the first frame update
-    void Start()
+    // ステータス
+    float Move = 5; // 移動
+    float blowAway = 5; // 吹き飛ばし
+    float durability = 5; // 耐久度
+
+    State currentState = State.eat;
+    bool stateEnter = true;
+
+    void ChangeState(State newState)
     {
-        agent = GetComponent<NavMeshAgent>();
+        currentState = newState;
+        stateEnter = true;
     }
-    // Update is called once per frame
-    void Update()
+
+    private void Update()
     {
-        agent.SetDestination(target.position);
+        if(currentState == State.battle)
+
+        switch(currentState)
+        {
+
+        }
     }
 }

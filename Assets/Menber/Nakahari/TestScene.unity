@@ -314,7 +314,6 @@ GameObject:
   - component: {fileID: 545632930}
   - component: {fileID: 545632929}
   - component: {fileID: 545632928}
-  - component: {fileID: 545632927}
   - component: {fileID: 545632926}
   m_Layer: 0
   m_Name: Ai
@@ -335,29 +334,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7da5f7e74bee3a14b8ca0fbe11fbe097, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 106608742}
---- !u!195 &545632927
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 545632925}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 7.3999996
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 12.799999
-  m_BaseOffset: 6.3999996
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!61 &545632928
 BoxCollider2D:
   m_ObjectHideFlags: 0
