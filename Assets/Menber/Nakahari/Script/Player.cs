@@ -48,15 +48,15 @@ public class Player : MonoBehaviour
     {
         flickValue_x = endPos.x - startPos.x;
         flickValue_y = endPos.y - startPos.y;
-        // Debug.Log("x フリック量は" + flickValue_x);
-        // Debug.Log("y フリック量は" + flickValue_y);
+        //Debug.Log("x フリック量は" + flickValue_x);
+        //Debug.Log("y フリック量は" + flickValue_y);
     }
 
     void GetDirection()
     {
         FlickDirection();
         Vector2 force = new Vector2(flickValue_x, flickValue_y);
-        rb2D.AddForce(force);
+        rb2D.AddForce(force * 100);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -67,7 +67,7 @@ public class Player : MonoBehaviour
             str++;
             vit--;
             Debug.Log("リンゴ" + apple);
-            Destroy(collision.gameObject);
+            //Destroy(collision.gameObject);
         }
 
         if(collision.gameObject.CompareTag("Orange"))
@@ -76,14 +76,14 @@ public class Player : MonoBehaviour
             str--;
             vit++;
             Debug.Log("オレンジ" + orange);
-            Destroy(collision.gameObject);
+            //Destroy(collision.gameObject);
         }
 
         if(collision.gameObject.CompareTag("Pair"))
         {
             pair++;
             Debug.Log("ナシ" + pair);
-            Destroy(collision.gameObject);
+            //Destroy(collision.gameObject);
         }
     }
 }

@@ -11,6 +11,12 @@ public class Fruit : MonoBehaviour
 
     Vector2 force;
 
+    private System.Action<Fruit> _deadCallback;
+    public void Setup(System.Action<Fruit> deadCallback)
+    {
+        _deadCallback = deadCallback;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,9 +38,10 @@ public class Fruit : MonoBehaviour
         Debug.Log(index);
         rb2D.AddForce(force);
 
-        if(this.transform.position.x >= 10 || this.transform.position.x <= -10)
+        if(this.transform.position.x >= 2100 || this.transform.position.x <= -2100)
         {
-            Destroy(this.gameObject);
+            _deadCallback?.Invoke(this);
+            Destroy(gameObject);
         }
         
     }
@@ -43,7 +50,13 @@ public class Fruit : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            force = new Vector2(index, 0);  
+            force = new Vector2(index*500, 0);  
+        }
+
+        if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("CPU1") || collision.gameObject.CompareTag("CPU2") || collision.gameObject.CompareTag("CPU3"))
+        {
+            _deadCallback?.Invoke(this);
+            Destroy(gameObject);
         }
     }
 }

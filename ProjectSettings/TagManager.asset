@@ -8,6 +8,9 @@ TagManager:
   - Orange
   - Pair
   - Ground
+  - CPU1
+  - CPU2
+  - CPU3
   layers:
   - Default
   - TransparentFX
