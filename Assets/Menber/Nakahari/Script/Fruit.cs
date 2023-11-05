@@ -12,6 +12,9 @@ public class Fruit : MonoBehaviour
     Vector2 force;
 
     private System.Action<Fruit> _deadCallback;
+
+    public Vector3 _thisPosition;
+
     public void Setup(System.Action<Fruit> deadCallback)
     {
         _deadCallback = deadCallback;
@@ -35,7 +38,7 @@ public class Fruit : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(index);
+        Debug.Log(_thisPosition);
         rb2D.AddForce(force);
 
         if(this.transform.position.x >= 2100 || this.transform.position.x <= -2100)
@@ -43,6 +46,7 @@ public class Fruit : MonoBehaviour
             _deadCallback?.Invoke(this);
             Destroy(gameObject);
         }
+        _thisPosition = this.transform.position;
         
     }
 

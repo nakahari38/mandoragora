@@ -20,7 +20,7 @@ public class FruitGeneration: MonoBehaviour
     List<GameObject> _fruitList = new List<GameObject>();
 
     [SerializeField]
-    List<Fruit> _fruitView = new List<Fruit>();
+    public List<Fruit> _fruitView = new List<Fruit>();
 
 
     // Update is called once per frame

@@ -46,10 +46,14 @@ public class EnemyAi : MonoBehaviour
 
     private float rotationSpeed = 300.0f;
 
+    FruitGeneration _fruitGeneration;
+
 
     private void Start()
     {
         if (rb2D == null) rb2D = GetComponent<Rigidbody2D>();
+
+        _fruitGeneration = GetComponent<FruitGeneration>();
     }
 
     void ChangeState(State newState)
@@ -145,4 +149,34 @@ public class EnemyAi : MonoBehaviour
         Vector2 tracking = player.position - this.transform.position;
         rb2D.AddForce(tracking * Move);       
     }
+
+    /*private void FruitGet()
+    {
+        Fruit _obj = null;
+        float _closePosition = Mathf.Infinity;
+        Vector2 _movePosition = Vector2.zero;
+
+        foreach (Fruit obj in _fruitGeneration._fruitView)
+        {
+            Vector2 test = obj._thisPosition - this.transform.position;
+            Vector2 karioki = test;
+
+            if(karioki < test)
+            {
+
+            }
+
+
+            float _fruitPosition = Vector2.Distance(this.transform.position, obj._thisPosition);
+            
+            if(_fruitPosition < _closePosition)
+            {
+                _closePosition = _fruitPosition;
+                _movePosition = _fruitPosition;
+                _obj = obj;
+            }
+        }
+
+        rb2D.AddForce(_closePosition * Move);
+    }*/
 }
