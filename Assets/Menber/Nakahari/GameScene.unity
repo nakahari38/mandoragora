@@ -155,6 +155,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd6cef0f354482e47a6483da298d6bce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _player: {fileID: 0}
+  _forcePower: 1000
+  _forceHeight: 1000
   str: 10
   vit: 10
 --- !u!212 &106608741
@@ -574,7 +577,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &545632926
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -582,7 +585,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 545632925}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7da5f7e74bee3a14b8ca0fbe11fbe097, type: 3}
   m_Name: 
@@ -700,7 +703,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 545632925}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1514, y: -478, z: 0}
   m_LocalScale: {x: 50, y: 50, z: 50}
   m_ConstrainProportionsScale: 1
