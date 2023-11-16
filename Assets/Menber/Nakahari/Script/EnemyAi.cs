@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -23,26 +24,25 @@ public class EnemyAi : MonoBehaviour
     State currentState = State.eat;
     bool stateEnter = true;
 
+    AttackForce _affectForce;
+
     // ゲージが溜まってから技発動までの時間
     [SerializeField]
     float spaceTime;
 
     private Rigidbody2D rb2D;
 
+    [SerializeField]
+    Transform player;
+
     // 以下は仮置き
     int apple;
     int orange;
     int pair;
 
-    [SerializeField]
-    int str = 10;
-    [SerializeField]
-    int vit = 10;
-
     float skilGage = 0;
 
-    [SerializeField]
-    Transform player;
+    
 
     private float rotationSpeed = 300.0f;
 
@@ -54,6 +54,8 @@ public class EnemyAi : MonoBehaviour
         if (rb2D == null) rb2D = GetComponent<Rigidbody2D>();
 
         _fruitGeneration = GetComponent<FruitGeneration>();
+
+        if(_affectForce == null) _affectForce = GetComponent<AttackForce>();
     }
 
     void ChangeState(State newState)
@@ -121,8 +123,7 @@ public class EnemyAi : MonoBehaviour
         if (collision.gameObject.CompareTag("Apple"))
         {
             apple++;
-            str++;
-            vit--;
+            _affectForce._power += 150;
             Debug.Log("リンゴ" + apple);
             Destroy(collision.gameObject);
         }
@@ -130,8 +131,7 @@ public class EnemyAi : MonoBehaviour
         if (collision.gameObject.CompareTag("Orange"))
         {
             orange++;
-            str--;
-            vit++;
+            _affectForce._power -= 150;
             Debug.Log("オレンジ" + orange);
             Destroy(collision.gameObject);
         }

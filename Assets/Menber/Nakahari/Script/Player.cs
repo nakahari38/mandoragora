@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : AttackForce
+public class Player : MonoBehaviour
 {
 
     Vector2 startPos;
@@ -17,16 +17,14 @@ public class Player : AttackForce
     int orange;
     int pair;
 
-    [SerializeField]
-    int str = 10;
-    [SerializeField]
-    int vit = 10;
+    private AttackForce _attackForce;
 
 
     // Start is called before the first frame update
     void Start()
     {
         if(rb2D == null) rb2D = GetComponent<Rigidbody2D>();
+        if(_attackForce == null) _attackForce = GetComponent<AttackForce>();
     }
 
     // Update is called once per frame
@@ -64,8 +62,7 @@ public class Player : AttackForce
         if(collision.gameObject.CompareTag("Apple"))
         {
             apple++;
-            str++;
-            vit--;
+            _attackForce._power += 150;
             Debug.Log("ƒŠƒ“ƒS" + apple);
             //Destroy(collision.gameObject);
         }
@@ -73,8 +70,7 @@ public class Player : AttackForce
         if(collision.gameObject.CompareTag("Orange"))
         {
             orange++;
-            str--;
-            vit++;
+            _attackForce._power -= 150;
             Debug.Log("ƒIƒŒƒ“ƒW" + orange);
             //Destroy(collision.gameObject);
         }
