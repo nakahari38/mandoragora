@@ -38,7 +38,7 @@ public class Fruit : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(_thisPosition);
+        //Debug.Log(_thisPosition);
         rb2D.AddForce(force);
 
         if(this.transform.position.x >= 2100 || this.transform.position.x <= -2100)
@@ -54,7 +54,7 @@ public class Fruit : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            force = new Vector2(index*500, 0);  
+            force = new Vector2(index*100, 0);  
         }
 
         if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("CPU1") || collision.gameObject.CompareTag("CPU2") || collision.gameObject.CompareTag("CPU3"))

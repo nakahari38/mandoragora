@@ -15,7 +15,7 @@ public class EnemyAi : MonoBehaviour
 
     // ステータス
     [SerializeField]
-    float Move = 5; // 移動
+    float move = 5; // 移動
     [SerializeField]
     float blowAway = 5; // 吹き飛ばし
     [SerializeField]
@@ -24,7 +24,7 @@ public class EnemyAi : MonoBehaviour
     State currentState = State.eat;
     bool stateEnter = true;
 
-    AttackForce _affectForce;
+    private Catch _catch;
 
     // ゲージが溜まってから技発動までの時間
     [SerializeField]
@@ -36,9 +36,6 @@ public class EnemyAi : MonoBehaviour
     Transform player;
 
     // 以下は仮置き
-    int apple;
-    int orange;
-    int pair;
 
     float skilGage = 0;
 
@@ -53,9 +50,9 @@ public class EnemyAi : MonoBehaviour
     {
         if (rb2D == null) rb2D = GetComponent<Rigidbody2D>();
 
-        _fruitGeneration = GetComponent<FruitGeneration>();
+        if (_catch == null) _catch = GetComponent<Catch>();
 
-        if(_affectForce == null) _affectForce = GetComponent<AttackForce>();
+        _fruitGeneration = GetComponent<FruitGeneration>();
     }
 
     void ChangeState(State newState)
@@ -64,9 +61,9 @@ public class EnemyAi : MonoBehaviour
         stateEnter = true;
     }
 
-    private void Update()
+/*    private void Update()
     {
-        /*if(currentState == State.attack)
+        if(currentState == State.attack)
         {
             // 攻撃状態でのAIの処理
 
@@ -81,10 +78,10 @@ public class EnemyAi : MonoBehaviour
 
                 }
             }
-        }*/
+        }
 
 
-        /*switch(currentState)
+        switch(currentState)
         {
             case State.attack:
                     if (stateEnter)
@@ -110,44 +107,22 @@ public class EnemyAi : MonoBehaviour
                     }
                 break;
 
-        }*/
-    }
+        }
+    }*/
 
     IEnumerator Space()
     {
         yield return new WaitForSeconds(spaceTime);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Apple"))
-        {
-            apple++;
-            _affectForce._power += 150;
-            Debug.Log("リンゴ" + apple);
-            Destroy(collision.gameObject);
-        }
-
-        if (collision.gameObject.CompareTag("Orange"))
-        {
-            orange++;
-            _affectForce._power -= 150;
-            Debug.Log("オレンジ" + orange);
-            Destroy(collision.gameObject);
-        }
-
-        if (collision.gameObject.CompareTag("Pair"))
-        {
-            pair++;
-            Debug.Log("ナシ" + pair);
-            Destroy(collision.gameObject);
-        }
-    }
-
-    private void FixedUpdate()
+    private void Update()
     {
         Vector2 tracking = player.position - this.transform.position;
-        rb2D.AddForce(tracking * Move);       
+        if(rb2D.velocity.magnitude <= _catch.aiSpeed)
+        {
+            rb2D.AddForce(tracking * move, ForceMode2D.Force);
+        }
+        //Debug.Log(rb2D.velocity.magnitude);
     }
 
     /*private void FruitGet()

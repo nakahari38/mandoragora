@@ -8,7 +8,9 @@ using static UnityEditor.Experimental.GraphView.GraphView;
 public class AttackForce : MonoBehaviour
 {
     [SerializeField]
-    public float _power;
+    public float power;
+    [SerializeField]
+    public float endurance;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -17,9 +19,9 @@ public class AttackForce : MonoBehaviour
             Rigidbody2D _otherRb2d = collision.gameObject.GetComponent<Rigidbody2D>();
             if (_otherRb2d == null) return;
 
-            Vector2 v = (collision.transform.position - this.transform.position).normalized;
+            Vector2 _directions = (collision.transform.position - this.transform.position).normalized;
 
-            _otherRb2d.AddForce(v * _power, ForceMode2D.Impulse);
+            _otherRb2d.AddForce(_directions * power / endurance, ForceMode2D.Impulse);
         }
     }
 }

@@ -13,18 +13,17 @@ public class Player : MonoBehaviour
 
     private Rigidbody2D rb2D;
 
-    int apple;
-    int orange;
-    int pair;
+    private Catch _catch;
 
-    private AttackForce _attackForce;
+    [SerializeField]
+    private float move;
 
 
     // Start is called before the first frame update
     void Start()
     {
         if(rb2D == null) rb2D = GetComponent<Rigidbody2D>();
-        if(_attackForce == null) _attackForce = GetComponent<AttackForce>();
+        if(_catch == null) _catch = GetComponent<Catch>();
     }
 
     // Update is called once per frame
@@ -40,6 +39,8 @@ public class Player : MonoBehaviour
             endPos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
             GetDirection();
         }
+
+        //Debug.Log(rb2D.velocity.magnitude);
     }
 
     void FlickDirection()
@@ -54,32 +55,6 @@ public class Player : MonoBehaviour
     {
         FlickDirection();
         Vector2 force = new Vector2(flickValue_x, flickValue_y);
-        rb2D.AddForce(force * 100);
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision.gameObject.CompareTag("Apple"))
-        {
-            apple++;
-            _attackForce._power += 150;
-            Debug.Log("リンゴ" + apple);
-            //Destroy(collision.gameObject);
-        }
-
-        if(collision.gameObject.CompareTag("Orange"))
-        {
-            orange++;
-            _attackForce._power -= 150;
-            Debug.Log("オレンジ" + orange);
-            //Destroy(collision.gameObject);
-        }
-
-        if(collision.gameObject.CompareTag("Pair"))
-        {
-            pair++;
-            Debug.Log("ナシ" + pair);
-            //Destroy(collision.gameObject);
-        }
+        rb2D.AddForce(force * (move + _catch.speed));
     }
 }
