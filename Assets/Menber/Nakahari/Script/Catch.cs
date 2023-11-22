@@ -7,7 +7,7 @@ public class Catch : MonoBehaviour
 {
     private int score;
 
-    private AttackForce _attackForce;
+    private AttackForce attackForce;
 
     [SerializeField]
     private float variable;
@@ -19,17 +19,17 @@ public class Catch : MonoBehaviour
 
     private void Start()
     {
-        if (_attackForce == null) _attackForce = GetComponent<AttackForce>();
+        if (attackForce == null) attackForce = GetComponent<AttackForce>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Apple"))
         {
-            _attackForce.power += variable;
-            if (_attackForce.endurance > 1)
+            attackForce.power += variable;
+            if (attackForce.endurance > 1)
             {
-                _attackForce.endurance--;
+                attackForce.endurance--;
             }
             score++;
             this.transform.localScale +=  new Vector3(0.5f, 0.5f, 0.5f);
@@ -39,11 +39,11 @@ public class Catch : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Orange"))
         {
-            if (_attackForce.power > 150)
+            if (attackForce.power > 150)
             {
-                _attackForce.power -= variable;
+                attackForce.power -= variable;
             }
-            _attackForce.endurance++;
+            attackForce.endurance++;
             score++;
             this.transform.localScale += new Vector3(0.5f, 0.5f, 0.5f);
             Debug.Log(score);

@@ -16,13 +16,9 @@ public class EnemyAi : MonoBehaviour
     // ステータス
     [SerializeField]
     float move = 5; // 移動
-    [SerializeField]
-    float blowAway = 5; // 吹き飛ばし
-    [SerializeField]
-    float durability = 5; // 耐久度
 
-    State currentState = State.eat;
-    bool stateEnter = true;
+    //State currentState = State.eat;
+    //bool stateEnter = true;
 
     private Catch _catch;
 
@@ -37,11 +33,11 @@ public class EnemyAi : MonoBehaviour
 
     // 以下は仮置き
 
-    float skilGage = 0;
+    // float skilGage = 0;
 
     
 
-    private float rotationSpeed = 300.0f;
+    //private float rotationSpeed = 300.0f;
 
     FruitGeneration _fruitGeneration;
 
@@ -55,11 +51,11 @@ public class EnemyAi : MonoBehaviour
         _fruitGeneration = GetComponent<FruitGeneration>();
     }
 
-    void ChangeState(State newState)
-    {
-        currentState = newState;
-        stateEnter = true;
-    }
+    //void ChangeState(State newState)
+    //{
+    //    currentState = newState;
+    //    stateEnter = true;
+    //}
 
 /*    private void Update()
     {

@@ -15,6 +15,8 @@ public class Fruit : MonoBehaviour
 
     public Vector3 _thisPosition;
 
+    private float deleteTime = 10f;
+
     public void Setup(System.Action<Fruit> deadCallback)
     {
         _deadCallback = deadCallback;
@@ -54,6 +56,8 @@ public class Fruit : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
+            //StartCoroutine(Delete()); // フルーツが落ちてから10秒で消す場合のコード
+
             force = new Vector2(index*100, 0);  
         }
 
@@ -62,5 +66,13 @@ public class Fruit : MonoBehaviour
             _deadCallback?.Invoke(this);
             Destroy(gameObject);
         }
+    }
+
+
+    IEnumerator Delete()
+    {
+        yield return new WaitForSeconds(deleteTime);
+        _deadCallback?.Invoke(this);
+        Destroy(gameObject);
     }
 }
