@@ -5,9 +5,12 @@ using UnityEngine;
 public class Score : MonoBehaviour
 {
 
+    [SerializeField]
+    Catch _catch;
+
     public static Score instance;
 
-    public int _score;
+    public int _playerScore;
 
     private void Awake()
     {
@@ -20,5 +23,10 @@ public class Score : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    private void Update()
+    {
+        _catch._score = _playerScore;
     }
 }
