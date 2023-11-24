@@ -5,7 +5,6 @@ using UnityEngine.SocialPlatforms.Impl;
 
 public class Catch : MonoBehaviour
 {
-    public int _score;
     public int _apple;
     public int _orange;
     public int _pair;
@@ -19,6 +18,8 @@ public class Catch : MonoBehaviour
 
     [SerializeField]
     public float _aiSpeed;
+
+    Score _score;
 
     private void Start()
     {
@@ -35,9 +36,9 @@ public class Catch : MonoBehaviour
                 _attackForce._endurance--;
             }
             _apple++;
-            _score++;
+            _score._score++;
             this.transform.localScale +=  new Vector3(0.5f, 0.5f, 0.5f);
-            Debug.Log(_score);
+            //Debug.Log(_score);
             //Destroy(collision.gameObject);
         }
 
@@ -49,20 +50,20 @@ public class Catch : MonoBehaviour
             }
             _attackForce._endurance++;
             _orange++;
-            _score++;
+            _score._score++;
             this.transform.localScale += new Vector3(0.5f, 0.5f, 0.5f);
-            Debug.Log(_score);
+            //Debug.Log(_score);
             //Destroy(collision.gameObject);
         }
 
         if (collision.gameObject.CompareTag("Pair"))
         {
-            _score++;
+            _score._score++;
             _pair++;
             _speed++;
             _aiSpeed += 100;
             this.transform.localScale += new Vector3(0.5f, 0.5f, 0.5f);
-            Debug.Log(_score);
+            //Debug.Log(_score);
             //Destroy(collision.gameObject);
         }
     }
