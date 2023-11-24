@@ -5,24 +5,24 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
 
-    Vector2 startPos;
-    Vector2 endPos;
+    Vector2 _startPos;
+    Vector2 _endPos;
 
-    float flickValue_x;
-    float flickValue_y;
+    float _flickValue_x;
+    float _flickValue_y;
 
-    private Rigidbody2D rb2D;
+    private Rigidbody2D _rb2D;
 
     private Catch _catch;
 
     [SerializeField]
-    private float move;
+    private float _move;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        if(rb2D == null) rb2D = GetComponent<Rigidbody2D>();
+        if(_rb2D == null) _rb2D = GetComponent<Rigidbody2D>();
         if(_catch == null) _catch = GetComponent<Catch>();
     }
 
@@ -31,12 +31,12 @@ public class Player : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            startPos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+            _startPos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
         }
 
         if (Input.GetMouseButtonUp(0))
         {
-            endPos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+            _endPos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
             GetDirection();
         }
 
@@ -45,8 +45,8 @@ public class Player : MonoBehaviour
 
     void FlickDirection()
     {
-        flickValue_x = endPos.x - startPos.x;
-        flickValue_y = endPos.y - startPos.y;
+        _flickValue_x = _endPos.x - _startPos.x;
+        _flickValue_y = _endPos.y - _startPos.y;
         //Debug.Log("x フリック量は" + flickValue_x);
         //Debug.Log("y フリック量は" + flickValue_y);
     }
@@ -54,7 +54,7 @@ public class Player : MonoBehaviour
     void GetDirection()
     {
         FlickDirection();
-        Vector2 force = new Vector2(flickValue_x, flickValue_y);
-        rb2D.AddForce(force * (move + _catch.speed));
+        Vector2 force = new Vector2(_flickValue_x, _flickValue_y);
+        _rb2D.AddForce(force * (_move + _catch._speed));
     }
 }

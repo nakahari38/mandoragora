@@ -7,14 +7,14 @@ public class FruitGeneration: MonoBehaviour
 {
     Vector2 Spawn;
     [SerializeField]
-    private Transform RangeA;
+    private Transform _rangeA;
     [SerializeField]
-    private Transform RangeB;
+    private Transform _rangeB;
 
     [SerializeField]
-    private float sense;
+    private float _sense;
 
-    private float pace;
+    private float _pace;
 
     [SerializeField]
     List<GameObject> _fruitList = new List<GameObject>();
@@ -26,15 +26,15 @@ public class FruitGeneration: MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        pace = pace + Time.deltaTime;
+        _pace = _pace + Time.deltaTime;
 
-        if (pace > sense)
+        if (_pace > _sense)
         {
             int index = Random.Range(0, _fruitList.Count);
 
-            float x = Random.Range(RangeA.position.x, RangeB.position.x);
+            float x = Random.Range(_rangeA.position.x, _rangeB.position.x);
 
-            float y = Random.Range(RangeA.position.y, RangeB.position.y);
+            float y = Random.Range(_rangeA.position.y, _rangeB.position.y);
 
             var fruit = Instantiate(_fruitList[index], new Vector2(x, y), Quaternion.identity);
 
@@ -43,7 +43,7 @@ public class FruitGeneration: MonoBehaviour
             fruitView.Setup(DestroyFrutes);
 
             _fruitView.Add(fruitView);
-            pace = 0f;
+            _pace = 0f;
         }
         
     }

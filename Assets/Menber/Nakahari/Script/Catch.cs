@@ -5,58 +5,64 @@ using UnityEngine.SocialPlatforms.Impl;
 
 public class Catch : MonoBehaviour
 {
-    private int score;
+    public int _score;
+    public int _apple;
+    public int _orange;
+    public int _pair;
 
-    private AttackForce attackForce;
-
-    [SerializeField]
-    private float variable;
-
-    public float speed;
+    private AttackForce _attackForce;
 
     [SerializeField]
-    public float aiSpeed;
+    private float _variable;
+
+    public float _speed;
+
+    [SerializeField]
+    public float _aiSpeed;
 
     private void Start()
     {
-        if (attackForce == null) attackForce = GetComponent<AttackForce>();
+        if (_attackForce == null) _attackForce = GetComponent<AttackForce>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Apple"))
         {
-            attackForce.power += variable;
-            if (attackForce.endurance > 1)
+            _attackForce._power += _variable;
+            if (_attackForce._endurance > 1)
             {
-                attackForce.endurance--;
+                _attackForce._endurance--;
             }
-            score++;
+            _apple++;
+            _score++;
             this.transform.localScale +=  new Vector3(0.5f, 0.5f, 0.5f);
-            Debug.Log(score);
+            Debug.Log(_score);
             //Destroy(collision.gameObject);
         }
 
         if (collision.gameObject.CompareTag("Orange"))
         {
-            if (attackForce.power > 150)
+            if (_attackForce._power > 150)
             {
-                attackForce.power -= variable;
+                _attackForce._power -= _variable;
             }
-            attackForce.endurance++;
-            score++;
+            _attackForce._endurance++;
+            _orange++;
+            _score++;
             this.transform.localScale += new Vector3(0.5f, 0.5f, 0.5f);
-            Debug.Log(score);
+            Debug.Log(_score);
             //Destroy(collision.gameObject);
         }
 
         if (collision.gameObject.CompareTag("Pair"))
         {
-            score++;
-            speed++;
-            aiSpeed += 100;
+            _score++;
+            _pair++;
+            _speed++;
+            _aiSpeed += 100;
             this.transform.localScale += new Vector3(0.5f, 0.5f, 0.5f);
-            Debug.Log(score);
+            Debug.Log(_score);
             //Destroy(collision.gameObject);
         }
     }

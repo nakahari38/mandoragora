@@ -15,7 +15,7 @@ public class EnemyAi : MonoBehaviour
 
     // ステータス
     [SerializeField]
-    float move = 5; // 移動
+    float _move = 5; // 移動
 
     //State currentState = State.eat;
     //bool stateEnter = true;
@@ -24,12 +24,12 @@ public class EnemyAi : MonoBehaviour
 
     // ゲージが溜まってから技発動までの時間
     [SerializeField]
-    float spaceTime;
+    float _spaceTime;
 
-    private Rigidbody2D rb2D;
+    private Rigidbody2D _rb2D;
 
     [SerializeField]
-    Transform player;
+    Transform _player;
 
     // 以下は仮置き
 
@@ -44,7 +44,7 @@ public class EnemyAi : MonoBehaviour
 
     private void Start()
     {
-        if (rb2D == null) rb2D = GetComponent<Rigidbody2D>();
+        if (_rb2D == null) _rb2D = GetComponent<Rigidbody2D>();
 
         if (_catch == null) _catch = GetComponent<Catch>();
 
@@ -108,15 +108,15 @@ public class EnemyAi : MonoBehaviour
 
     IEnumerator Space()
     {
-        yield return new WaitForSeconds(spaceTime);
+        yield return new WaitForSeconds(_spaceTime);
     }
 
     private void Update()
     {
-        Vector2 tracking = player.position - this.transform.position;
-        if(rb2D.velocity.magnitude <= _catch.aiSpeed)
+        Vector2 tracking = _player.position - this.transform.position;
+        if(_rb2D.velocity.magnitude <= _catch._aiSpeed)
         {
-            rb2D.AddForce(tracking * move, ForceMode2D.Force);
+            _rb2D.AddForce(tracking * _move, ForceMode2D.Force);
         }
         //Debug.Log(rb2D.velocity.magnitude);
     }
