@@ -41,6 +41,7 @@ public class Timer : MonoBehaviour
         if(0 >= second  && 0 >= oldsecond)
         {
             time_obj.SetActive(false);
+            SceneChangr.scenechangrInstance._fade.SceneFade("ResultScene");
         }
     }
 
