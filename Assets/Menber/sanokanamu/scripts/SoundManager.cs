@@ -53,9 +53,9 @@ public class BGMSoundData
 {
     public enum BGM
     {
-        Title,
-        Dungeon,
-        Hoge, // これがラベルになる
+        battle,
+        B,
+        C, // これがラベルになる
     }
 
     public BGM bgm;
@@ -69,9 +69,9 @@ public class SESoundData
 {
     public enum SE
     {
-        Attack,
-        Damage,
-        Hoge, // これがラベルになる
+        apple,
+        attack,
+        pear, // これがラベルになる
     }
 
     public SE se;
@@ -80,4 +80,4 @@ public class SESoundData
     public float volume = 1;
 }
 
-//SoundManager.Instance.PlayBGM(BGMSoundData.BGM.Title);
+//SoundManager.Instance.PlayBGM(BGMSoundData.BGM.A);
