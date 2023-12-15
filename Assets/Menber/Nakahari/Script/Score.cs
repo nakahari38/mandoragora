@@ -5,12 +5,12 @@ using UnityEngine;
 public class Score : MonoBehaviour
 {
 
-    [SerializeField]
-    Catch _catch;
-
     public static Score instance;
 
     public int _playerScore;
+    public int _cpu1Score;
+    public int _cpu2Score;
+    public int _cpu3Score;
 
     private void Awake()
     {
@@ -23,10 +23,5 @@ public class Score : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
-
-    private void Update()
-    {
-        _catch._score = _playerScore;
     }
 }

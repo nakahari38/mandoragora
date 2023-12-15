@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Catch : MonoBehaviour
 {
-    public int _score;
     public int _apple;
     public int _orange;
     public int _pair;
@@ -19,9 +18,33 @@ public class Catch : MonoBehaviour
     [SerializeField]
     public float _aiSpeed;
 
+    [SerializeField]
+    private Score _score;
+
     private void Start()
     {
         if (_attackForce == null) _attackForce = GetComponent<AttackForce>();
+    }
+
+    private void Update()
+    {
+        if (this.gameObject.tag == "Player")
+        {
+            _score._playerScore = _apple + _orange + _pair;
+        }
+        else if (this.gameObject.tag == "CPU1")
+        {
+            _score._cpu1Score = _apple + _orange + _pair;
+        }
+        else if (this.gameObject.tag == "CPU2")
+        {
+            _score._cpu2Score = _apple + _orange + _pair;
+        }
+        else if (this.gameObject.tag == "CPU3")
+        {
+            _score._cpu3Score = _apple + _orange + _pair;
+        }
+        Debug.Log(_score._playerScore);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -34,9 +57,8 @@ public class Catch : MonoBehaviour
                 _attackForce._endurance--;
             }
             _apple++;
-            _score++;
             this.transform.localScale +=  new Vector3(0.5f, 0.5f, 0.5f);
-            Debug.Log(_score);
+            //Debug.Log(_score);
             //Destroy(collision.gameObject);
         }
 
@@ -48,20 +70,18 @@ public class Catch : MonoBehaviour
             }
             _attackForce._endurance++;
             _orange++;
-            _score++;
             this.transform.localScale += new Vector3(0.5f, 0.5f, 0.5f);
-            Debug.Log(_score);
+            //Debug.Log(_score);
             //Destroy(collision.gameObject);
         }
 
         if (collision.gameObject.CompareTag("Pair"))
         {
-            _score++;
             _pair++;
             _speed++;
             _aiSpeed += 100;
             this.transform.localScale += new Vector3(0.5f, 0.5f, 0.5f);
-            Debug.Log(_score);
+            //Debug.Log(_score);
             //Destroy(collision.gameObject);
         }
     }

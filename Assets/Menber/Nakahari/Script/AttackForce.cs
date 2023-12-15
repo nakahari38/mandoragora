@@ -33,7 +33,7 @@ public class AttackForce : MonoBehaviour
                  _otherRb2d.AddForce(_directions * _blowAway, ForceMode2D.Impulse);
             }
 
-            Debug.Log(_directions);
+            //Debug.Log(_directions);
             
         }
     }
@@ -63,7 +63,7 @@ public class AttackForce : MonoBehaviour
             Debug.Log("ダブルタップ");
         }
 
-        Debug.Log(_judge);
+        //Debug.Log(_judge);
     }
 
     void Judge()

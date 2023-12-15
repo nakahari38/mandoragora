@@ -22,6 +22,13 @@ public class FruitGeneration: MonoBehaviour
     [SerializeField]
     public List<Fruit> _fruitView = new List<Fruit>();
 
+    [SerializeField]
+    Player _player;
+    [SerializeField]
+    EnemyAi _enemyAi;
+
+
+
 
     // Update is called once per frame
     void Update()
