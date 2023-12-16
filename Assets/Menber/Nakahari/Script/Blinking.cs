@@ -8,39 +8,44 @@ public class Blinking : MonoBehaviour
 {
     [SerializeField]
     private float _cycle = 1;
-    [SerializeField]
-    private float speed = 1f;
     public Color _color;
     public Image _image;
     private float _time;
 
-    private bool _isPlaying;
+    public float _changeTime;
 
+    public float _normalTime;
+
+    public int num;
+
+    int test = 0;
 
     private void Start()
     {
-        InvokeRepeating("Blinkings", 1, 5);
+        StartCoroutine(Change());
     }
     // Update is called once per frame
     void Update()
     {
-
+        /*_time += Time.deltaTime;
+        var value = Mathf.Repeat((float)_time, _cycle);
+        _color.b = value >= _cycle * 0.5f ? 1 : 0;*/
     }
 
-    void Blinkings()
+    IEnumerator Change()
     {
-        _time += Time.deltaTime;
-        var value = Mathf.Repeat((float)_time, _cycle);
-        _color.b = value >= _cycle * 0.5f ? 1 : 0;
-        /*        if (value < 0.5f)
-                {
-                    _color.a = Mathf.Lerp(0f, 1f, value * 2);
-                }
-                else
-                {
-                    _color.a = Mathf.Lerp(1f, 0f, (value - 0.5f) * 2);
-                }*/
-        //_color.a = 1;
-        _image.color = _color;
+        while (true)
+        {
+            for (int i = 0; i < num; i++)
+            {
+                _image.color = Color.white;
+                yield return new WaitForSeconds(_changeTime);
+                _image.color = Color.yellow;
+                yield return new WaitForSeconds(_changeTime);
+            }
+            _image.color = Color.yellow;
+            yield return new WaitForSeconds(_normalTime);
+        }
+        
     }
 }

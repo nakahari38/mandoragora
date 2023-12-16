@@ -62,14 +62,14 @@ public class Player : MonoBehaviour
             this.transform.position = _firstPos;
             this.transform.rotation = _firstRot;
             _judge = true;
-            
+            //random = Random.Range(1, 3);
             if (_score._playerScore <= 3) return;
             if (_score._playerScore <= 24)
             {
-                /*do
+                do
                 {
                     random = Random.Range(1, 3);
-                } while (IsConditions(random));*/
+                } while (IsConditions(random));
                 switch (random)
                 {
                     case 1:

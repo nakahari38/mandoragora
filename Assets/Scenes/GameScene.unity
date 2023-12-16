@@ -916,7 +916,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &545632926
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1324,10 +1324,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b41f60d54a9f99b449005b6024715257, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cycle: 1
-  speed: 1
+  _cycle: 0.5
   _color: {r: 1, g: 1, b: 1, a: 1}
   _image: {fileID: 745358636}
+  _changeTime: 0
+  _normalTime: 0
+  num: 0
 --- !u!1 &755574239
 GameObject:
   m_ObjectHideFlags: 0
@@ -1629,9 +1631,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cycle: 1
-  speed: 1
   _color: {r: 1, g: 1, b: 1, a: 1}
   _image: {fileID: 803845872}
+  _changeTime: 0
+  _normalTime: 0
+  num: 0
 --- !u!1 &821775330
 GameObject:
   m_ObjectHideFlags: 0
@@ -1722,9 +1726,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cycle: 1
-  speed: 1
   _color: {r: 1, g: 1, b: 1, a: 1}
   _image: {fileID: 821775332}
+  _changeTime: 0
+  _normalTime: 0
+  num: 0
 --- !u!1 &823680804
 GameObject:
   m_ObjectHideFlags: 0
@@ -2026,9 +2032,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cycle: 1
-  speed: 1
   _color: {r: 1, g: 1, b: 1, a: 1}
   _image: {fileID: 832254212}
+  _changeTime: 0
+  _normalTime: 0
+  num: 0
 --- !u!1 &838482852
 GameObject:
   m_ObjectHideFlags: 0
