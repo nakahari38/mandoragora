@@ -62,23 +62,26 @@ public class Player : MonoBehaviour
             this.transform.position = _firstPos;
             this.transform.rotation = _firstRot;
             _judge = true;
-            //random = Random.Range(1, 3);
+            random = Random.Range(1, 4);
             if (_score._playerScore <= 3) return;
             if (_score._playerScore <= 24)
             {
-                do
+                /*do
                 {
                     random = Random.Range(1, 3);
-                } while (IsConditions(random));
+                } while (IsConditions(random));*/
                 switch (random)
                 {
                     case 1:
+                        if (_catch._apple <= 3) return;
                         _catch._apple -= 4;
                         break;
                     case 2:
+                        if (_catch._orange <= 3) return;
                         _catch._orange -= 4;
                         break;
                     case 3:
+                        if (_catch._pair <= 3) return;
                         _catch._pair -= 4;
                         break;
                 }
@@ -92,12 +95,15 @@ public class Player : MonoBehaviour
                 switch (random)
                 {
                     case 1:
+                        if (_catch._apple <= 7) return;
                         _catch._apple -= 8;
                         break;
                     case 2:
+                        if (_catch._orange <= 7) return;
                         _catch._orange -= 8;
                         break;
                     case 3:
+                        if (_catch._pair <= 7) return;
                         _catch._pair -= 8;
                         break;
                 }
@@ -111,12 +117,15 @@ public class Player : MonoBehaviour
                 switch (random)
                 {
                     case 1:
+                        if (_catch._apple <= 11) return;
                         _catch._apple -= 12;
                         break;
                     case 2:
+                        if (_catch._orange <= 11) return;
                         _catch._orange -= 12;
                         break;
                     case 3:
+                        if (_catch._pair <= 11) return;
                         _catch._pair -= 12;
                         break;
                 }
@@ -130,12 +139,15 @@ public class Player : MonoBehaviour
                 switch (random)
                 {
                     case 1:
+                        if (_catch._apple <= 15) return;
                         _catch._apple -= 16;
                         break;
                     case 2:
+                        if (_catch._orange <= 15) return;
                         _catch._orange -= 16;
                         break;
                     case 3:
+                        if (_catch._pair <= 15) return;
                         _catch._pair -= 16;
                         break;
                 }

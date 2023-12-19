@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6986104496508873787}
   - component: {fileID: 2021885111289476704}
-  - component: {fileID: 2565713877211321173}
   - component: {fileID: 8257338396964564902}
   - component: {fileID: 5596782274641748317}
+  - component: {fileID: 845529863539398075}
   m_Layer: 0
   m_Name: Ringo
   m_TagString: Apple
@@ -87,22 +87,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &2565713877211321173
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2830158405039699893}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -1}
-  serializedVersion: 2
-  m_Radius: 5
 --- !u!50 &8257338396964564902
 Rigidbody2D:
   serializedVersion: 4
@@ -136,3 +120,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bca466e623a26a94ab5e91e040e7acc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _thisPosition: {x: 0, y: 0, z: 0}
+--- !u!58 &845529863539398075
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2830158405039699893}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.22, y: -1.18}
+  serializedVersion: 2
+  m_Radius: 5.04

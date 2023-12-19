@@ -6,8 +6,8 @@ using UnityEngine.UI;
 
 public class Blinking : MonoBehaviour
 {
-    [SerializeField]
-    private float _cycle = 1;
+    //[SerializeField]
+    //private float _cycle = 1;
     public Color _color;
     public Image _image;
     private float _time;
@@ -18,7 +18,7 @@ public class Blinking : MonoBehaviour
 
     public int num;
 
-    int test = 0;
+    //int test = 0;
 
     private void Start()
     {

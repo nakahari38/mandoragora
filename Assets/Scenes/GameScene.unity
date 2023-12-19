@@ -916,7 +916,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &545632926
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1324,7 +1324,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b41f60d54a9f99b449005b6024715257, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cycle: 0.5
   _color: {r: 1, g: 1, b: 1, a: 1}
   _image: {fileID: 745358636}
   _changeTime: 0
@@ -1630,12 +1629,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b41f60d54a9f99b449005b6024715257, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cycle: 1
   _color: {r: 1, g: 1, b: 1, a: 1}
   _image: {fileID: 803845872}
-  _changeTime: 0
-  _normalTime: 0
-  num: 0
+  _changeTime: 0.2
+  _normalTime: 5
+  num: 5
 --- !u!1 &821775330
 GameObject:
   m_ObjectHideFlags: 0
@@ -1695,7 +1693,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4c21d44305ebdc14f8a5c2e9b0471004, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f6ef2af0d337de846a6f56e58643793d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1725,12 +1723,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b41f60d54a9f99b449005b6024715257, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cycle: 1
   _color: {r: 1, g: 1, b: 1, a: 1}
   _image: {fileID: 821775332}
-  _changeTime: 0
-  _normalTime: 0
-  num: 0
+  _changeTime: 0.2
+  _normalTime: 5
+  num: 5
 --- !u!1 &823680804
 GameObject:
   m_ObjectHideFlags: 0
@@ -2001,7 +1998,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4c21d44305ebdc14f8a5c2e9b0471004, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f6ef2af0d337de846a6f56e58643793d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2031,12 +2028,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b41f60d54a9f99b449005b6024715257, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cycle: 1
   _color: {r: 1, g: 1, b: 1, a: 1}
   _image: {fileID: 832254212}
-  _changeTime: 0
-  _normalTime: 0
-  num: 0
+  _changeTime: 0.2
+  _normalTime: 5
+  num: 5
 --- !u!1 &838482852
 GameObject:
   m_ObjectHideFlags: 0
@@ -3024,7 +3020,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1194101521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5731,14 +5727,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rangeA: {fileID: 1615433513}
   _rangeB: {fileID: 125920477}
-  _sense: 2
+  _sense: 1
   _fruitList:
-  - {fileID: 8584818842408233958, guid: 8f499a4c74f4cd740a21001aa5aa2797, type: 3}
+  - {fileID: 7758820391544356616, guid: 152cf5f73b9d1cb4386c2f045f63f18f, type: 3}
   - {fileID: 2830158405039699893, guid: 1b546fc8f0c502a4d9405f313125c80a, type: 3}
-  - {fileID: 8367514324428903484, guid: 94db5317a8ea44f43addc121a13f41a6, type: 3}
+  - {fileID: 5817132974932801243, guid: 7b333d6dde2a7844f90e81e98b42ce45, type: 3}
   _fruitView: []
-  _player: {fileID: 0}
-  _enemyAi: {fileID: 0}
+  _player: {fileID: 106608740}
+  _enemyAi: {fileID: 545632926}
 --- !u!4 &2032032257
 Transform:
   m_ObjectHideFlags: 0
