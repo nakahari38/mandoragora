@@ -34,7 +34,8 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(_rb2D == null) _rb2D = GetComponent<Rigidbody2D>();
+        _score = Score.instance.GetComponent<Score>();
+        if (_rb2D == null) _rb2D = GetComponent<Rigidbody2D>();
         if(_catch == null) _catch = GetComponent<Catch>();
         _firstPos = this.transform.position;
         _firstRot = this.transform.rotation;

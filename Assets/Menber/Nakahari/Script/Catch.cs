@@ -23,6 +23,7 @@ public class Catch : MonoBehaviour
 
     private void Start()
     {
+        _score = Score.instance.GetComponent<Score>();
         if (_attackForce == null) _attackForce = GetComponent<AttackForce>();
     }
 
@@ -44,7 +45,7 @@ public class Catch : MonoBehaviour
         {
             _score._cpu3Score = _apple + _orange + _pair;
         }
-        Debug.Log(_score._playerScore);
+        Debug.Log("aaa");
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

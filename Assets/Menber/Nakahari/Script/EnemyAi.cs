@@ -53,6 +53,7 @@ public class EnemyAi : MonoBehaviour
 
     private void Start()
     {
+        _score = Score.instance.GetComponent<Score>();
         if (_rb2D == null) _rb2D = GetComponent<Rigidbody2D>();
 
         if (_catch == null) _catch = GetComponent<Catch>();
@@ -137,6 +138,7 @@ public class EnemyAi : MonoBehaviour
             _rb2D.velocity = Vector3.zero;
             this.transform.position = _firstPos;
             this.transform.rotation = _firstRot;
+            random = Random.Range(1, 4);
             if (this.gameObject.CompareTag("CPU1"))
             {
                 if (_score._cpu1Score <= 3) return;
@@ -149,12 +151,15 @@ public class EnemyAi : MonoBehaviour
                     switch (random)
                     {
                         case 1:
+                            if (_catch._apple <= 3) return;
                             _catch._apple -= 4;
                             break;
                         case 2:
+                            if (_catch._orange <= 3) return;
                             _catch._orange -= 4;
                             break;
                         case 3:
+                            if (_catch._pair <= 3) return;
                             _catch._pair -= 4;
                             break;
                     }
@@ -168,12 +173,15 @@ public class EnemyAi : MonoBehaviour
                     switch (random)
                     {
                         case 1:
+                            if (_catch._apple <= 7) return;
                             _catch._apple -= 8;
                             break;
                         case 2:
+                            if (_catch._orange <= 7) return;
                             _catch._orange -= 8;
                             break;
                         case 3:
+                            if (_catch._pair <= 7) return;
                             _catch._pair -= 8;
                             break;
                     }
@@ -187,12 +195,15 @@ public class EnemyAi : MonoBehaviour
                     switch (random)
                     {
                         case 1:
+                            if (_catch._apple <= 11) return;
                             _catch._apple -= 12;
                             break;
                         case 2:
+                            if (_catch._orange <= 11) return;
                             _catch._orange -= 12;
                             break;
                         case 3:
+                            if (_catch._pair <= 11) return;
                             _catch._pair -= 12;
                             break;
                     }
@@ -206,12 +217,15 @@ public class EnemyAi : MonoBehaviour
                     switch (random)
                     {
                         case 1:
+                            if (_catch._apple <= 15) return;
                             _catch._apple -= 16;
                             break;
                         case 2:
+                            if (_catch._orange <= 15) return;
                             _catch._orange -= 16;
                             break;
                         case 3:
+                            if (_catch._pair <= 15) return;
                             _catch._pair -= 16;
                             break;
                     }

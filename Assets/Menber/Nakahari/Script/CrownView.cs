@@ -21,6 +21,7 @@ public class CrownView : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _score = Score.instance.GetComponent<Score>();
         _playerCrown.enabled = false;
         _cpu1Crown.enabled = false;
         _cpu2Crown.enabled = false;
