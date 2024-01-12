@@ -29,9 +29,4 @@ public class Character : MonoBehaviour
             _image.sprite = _cpu1Sprite;
         }
     }
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

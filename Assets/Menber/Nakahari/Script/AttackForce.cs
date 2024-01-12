@@ -5,11 +5,13 @@ using UnityEngine;
 
 public class AttackForce : MonoBehaviour
 {
+    [Header("‚«”ò‚Î‚µ—Í")]
     [SerializeField]
     public float _power;
+    [Header("‘Ï‹v—Í")]
     [SerializeField]
     public float _endurance;
-
+    [Header("•KE‹Z‚Ì‚«”ò‚Î‚µ—Í")]
     [SerializeField]
     public float _blowAway;
 
@@ -27,11 +29,6 @@ public class AttackForce : MonoBehaviour
             Vector2 _directions = (collision.transform.position - this.transform.position).normalized;
 
             _otherRb2d.AddForce(_directions * _power / _endurance, ForceMode2D.Impulse);
-
-            if (Input.GetKey(KeyCode.Space) && this.CompareTag("Player"))
-            {
-                 _otherRb2d.AddForce(_directions * _blowAway, ForceMode2D.Impulse);
-            }
 
             //Debug.Log(_directions);
             

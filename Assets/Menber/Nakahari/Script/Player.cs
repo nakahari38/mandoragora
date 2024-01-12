@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-
+    AttackForce _attackForce;
     Vector2 _startPos;
     Vector2 _endPos;
 
@@ -58,7 +58,7 @@ public class Player : MonoBehaviour
         #region êŠO‚Éo‚½Žž‚Ìˆ—
         if (this.transform.position.x >= 2300 || this.transform.position.x <= -2300)
         {
-            
+            _attackForce._power -= 100;
             _rb2D.velocity = Vector3.zero;
             this.transform.position = _firstPos;
             this.transform.rotation = _firstRot;

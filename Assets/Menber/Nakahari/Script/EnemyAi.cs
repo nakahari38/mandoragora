@@ -5,13 +5,6 @@ using UnityEngine;
 
 public class EnemyAi : MonoBehaviour
 {
-    // Aiの状態
-    enum State{
-        attack,
-        eat,
-        skil,
-    };
-
     // ステータス
     [SerializeField]
     float _move = 5; // 移動
@@ -40,6 +33,8 @@ public class EnemyAi : MonoBehaviour
 
     public int random;
 
+    AttackForce _attackForce;
+
     // 以下は仮置き
 
     // float skilGage = 0;
@@ -64,61 +59,6 @@ public class EnemyAi : MonoBehaviour
         _firstRot = this.transform.rotation;
     }
 
-    //void ChangeState(State newState)
-    //{
-    //    currentState = newState;
-    //    stateEnter = true;
-    //}
-
-/*    private void Update()
-    {
-        if(currentState == State.attack)
-        {
-            // 攻撃状態でのAIの処理
-
-            if(currentState == State.eat)
-            {
-                // 食事状態でのAIの処理
-
-                if(skilGage >= 100)
-                {
-                    StartCoroutine(Space());
-                    // スキル使用時のAIの処理
-
-                }
-            }
-        }
-
-
-        switch(currentState)
-        {
-            case State.attack:
-                    if (stateEnter)
-                    {
-                        stateEnter = false;
-                        Debug.Log("攻撃");
-                    }
-                break;
-
-            case State.eat:
-                    if (stateEnter)
-                    {
-                        stateEnter = false;
-                        Debug.Log("食べる");
-                    }
-                break;
-
-            case State.skil:
-                    if (stateEnter)
-                    {
-                        stateEnter = false;
-                        Debug.Log("必殺技発動");
-                    }
-                break;
-
-        }
-    }*/
-
     IEnumerator Space()
     {
         yield return new WaitForSeconds(_spaceTime);
@@ -141,6 +81,7 @@ public class EnemyAi : MonoBehaviour
             random = Random.Range(1, 4);
             if (this.gameObject.CompareTag("CPU1"))
             {
+                _attackForce._power -= 100;
                 if (_score._cpu1Score <= 3) return;
                 if (_score._cpu1Score <= 24)
                 {
@@ -233,6 +174,7 @@ public class EnemyAi : MonoBehaviour
             }
             else if (this.gameObject.CompareTag("CPU2"))
             {
+                _attackForce._power -= 100;
                 if (_score._cpu2Score <= 3) return;
                 if (_score._cpu2Score <= 24)
                 {
@@ -313,6 +255,7 @@ public class EnemyAi : MonoBehaviour
             }
             else if (this.gameObject.CompareTag("CPU3"))
             {
+                _attackForce._power -= 100;
                 if (_score._cpu3Score <= 3) return;
                 if (_score._cpu3Score <= 24)
                 {
@@ -397,36 +340,6 @@ public class EnemyAi : MonoBehaviour
         #endregion
         //Debug.Log(rb2D.velocity.magnitude);
     }
-
-    /*private void FruitGet()
-    {
-        Fruit _obj = null;
-        float _closePosition = Mathf.Infinity;
-        Vector2 _movePosition = Vector2.zero;
-
-        foreach (Fruit obj in _fruitGeneration._fruitView)
-        {
-            Vector2 test = obj._thisPosition - this.transform.position;
-            Vector2 karioki = test;
-
-            if(karioki < test)
-            {
-
-            }
-
-
-            float _fruitPosition = Vector2.Distance(this.transform.position, obj._thisPosition);
-            
-            if(_fruitPosition < _closePosition)
-            {
-                _closePosition = _fruitPosition;
-                _movePosition = _fruitPosition;
-                _obj = obj;
-            }
-        }
-
-        rb2D.AddForce(_closePosition * Move);
-    }*/
 
     #region 条件判定
     bool IsConditions(int value)

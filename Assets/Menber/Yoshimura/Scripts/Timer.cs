@@ -17,7 +17,7 @@ public class Timer : MonoBehaviour
     void Start()
     { 
        
-      }
+    }
 
     // Update is called once per frame
     void Update()
@@ -27,7 +27,7 @@ public class Timer : MonoBehaviour
     void CountTime()
     {
         Text time_text = time_obj.GetComponent<Text>();
-        time_text.text =  oldsecond +  ":" + second;
+        time_text.text =  oldsecond +  ":" + ((int)second).ToString("00");
        
 
         if (second < 0)

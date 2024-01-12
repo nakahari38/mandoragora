@@ -9,12 +9,12 @@ public class Catch : MonoBehaviour
     public int _pair;
 
     private AttackForce _attackForce;
-
+    [Header("Powerの増減値")]
     [SerializeField]
     private float _variable;
-
+    [Header("Playerのスピード")]
     public float _speed;
-
+    [Header("AIのスピード")]
     [SerializeField]
     public float _aiSpeed;
 
@@ -45,7 +45,6 @@ public class Catch : MonoBehaviour
         {
             _score._cpu3Score = _apple + _orange + _pair;
         }
-        Debug.Log("aaa");
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -53,10 +52,6 @@ public class Catch : MonoBehaviour
         if (collision.gameObject.CompareTag("Apple"))
         {
             _attackForce._power += _variable;
-            if (_attackForce._endurance > 1)
-            {
-                _attackForce._endurance--;
-            }
             _apple++;
             this.transform.localScale +=  new Vector3(0.5f, 0.5f, 0.5f);
             //Debug.Log(_score);
@@ -65,9 +60,13 @@ public class Catch : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Orange"))
         {
-            if (_attackForce._power > 150)
+            if(_speed > 1)
             {
-                _attackForce._power -= _variable;
+                _speed--;
+            }
+            if(_aiSpeed > 100)
+            {
+                _aiSpeed -= 100;
             }
             _attackForce._endurance++;
             _orange++;
@@ -78,6 +77,10 @@ public class Catch : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Pair"))
         {
+            if (_attackForce._endurance > 1)
+            {
+                _attackForce._endurance--;
+            }
             _pair++;
             _speed++;
             _aiSpeed += 100;
