@@ -10,6 +10,14 @@ public class ULT : MonoBehaviour
 
     private bool isUltFlg = false;
 
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            AddUltScore(Random.Range(0, 3));
+        }
+    }
     /// <summary>
     /// 必殺技が使用可能確認関数
     /// </summary>
@@ -40,7 +48,6 @@ public class ULT : MonoBehaviour
     /// </summary>
     private void ResetUltScore()
     {
-        UltScore = RESET_SCORE;
         UltScore = RESET_SCORE;
     }
 }
