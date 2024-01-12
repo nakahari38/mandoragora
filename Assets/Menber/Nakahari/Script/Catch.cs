@@ -21,10 +21,13 @@ public class Catch : MonoBehaviour
     [SerializeField]
     private Score _score;
 
+    private ULT _ult;
+
     private void Start()
     {
         _score = Score.instance.GetComponent<Score>();
         if (_attackForce == null) _attackForce = GetComponent<AttackForce>();
+        if (_ult == null) _ult = GetComponent<ULT>();
     }
 
     private void Update()
@@ -51,6 +54,7 @@ public class Catch : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Apple"))
         {
+            _ult.AddUltScore(1);
             _attackForce._power += _variable;
             _apple++;
             this.transform.localScale +=  new Vector3(0.5f, 0.5f, 0.5f);
@@ -60,7 +64,8 @@ public class Catch : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Orange"))
         {
-            if(_speed > 1)
+            _ult.AddUltScore(1);
+            if (_speed > 1)
             {
                 _speed--;
             }
@@ -77,6 +82,7 @@ public class Catch : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Pair"))
         {
+            _ult.AddUltScore(1);
             if (_attackForce._endurance > 1)
             {
                 _attackForce._endurance--;

@@ -31,12 +31,15 @@ public class Player : MonoBehaviour
 
     public int random;
 
+    private ULT _ult;
+
     // Start is called before the first frame update
     void Start()
     {
         _score = Score.instance.GetComponent<Score>();
         if (_rb2D == null) _rb2D = GetComponent<Rigidbody2D>();
         if(_catch == null) _catch = GetComponent<Catch>();
+        if (_ult == null) _ult = GetComponent<ULT>();
         _firstPos = this.transform.position;
         _firstRot = this.transform.rotation;
     }
@@ -58,6 +61,7 @@ public class Player : MonoBehaviour
         #region êŠO‚Éo‚½Žž‚Ìˆ—
         if (this.transform.position.x >= 2300 || this.transform.position.x <= -2300)
         {
+            _ult.AddUltScore(-2);
             _attackForce._power -= 100;
             _rb2D.velocity = Vector3.zero;
             this.transform.position = _firstPos;

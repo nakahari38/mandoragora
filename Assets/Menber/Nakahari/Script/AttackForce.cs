@@ -15,6 +15,8 @@ public class AttackForce : MonoBehaviour
     [SerializeField]
     public float _blowAway;
 
+    private ULT _ult;
+
     private int _touchCount;
 
     private bool _judge = false;
@@ -44,9 +46,10 @@ public class AttackForce : MonoBehaviour
 
             Vector2 _directions = (collision.transform.position - this.transform.position).normalized;
 
-            if (_judge && this.CompareTag("Player"))
+            if (_judge && this.CompareTag("Player")&&_ult.AvailableFlag())
             {
                 _otherRb2d.AddForce(_directions * _blowAway, ForceMode2D.Impulse);
+                _ult.ResetUltScore();
             }
         }
     }

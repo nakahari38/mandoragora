@@ -46,7 +46,7 @@ public class ULT : MonoBehaviour
     /// <summary>
     /// ウルトスコアリセット用関数
     /// </summary>
-    private void ResetUltScore()
+    public void ResetUltScore()
     {
         UltScore = RESET_SCORE;
     }
