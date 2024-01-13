@@ -33,6 +33,11 @@ public class Player : MonoBehaviour
 
     private ULT _ult;
 
+    [SerializeField]
+    private GameObject _flowerPot1;
+    [SerializeField]
+    private GameObject _flowerPot2;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,6 +45,7 @@ public class Player : MonoBehaviour
         if (_rb2D == null) _rb2D = GetComponent<Rigidbody2D>();
         if(_catch == null) _catch = GetComponent<Catch>();
         if (_ult == null) _ult = GetComponent<ULT>();
+        if(_attackForce == null) _attackForce = GetComponent<AttackForce>();
         _firstPos = this.transform.position;
         _firstRot = this.transform.rotation;
     }
@@ -56,6 +62,17 @@ public class Player : MonoBehaviour
         {
             _endPos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
             GetDirection();
+        }
+
+        switch (_attackForce._count)
+        {
+            case 1:
+                _flowerPot1.SetActive(false);
+                _flowerPot2.SetActive(true);
+            break;
+            case 2:
+                _flowerPot2.SetActive(false);
+            break;
         }
 
         #region èÍäOÇ…èoÇΩéûÇÃèàóù

@@ -11,7 +11,9 @@ public class Timer : MonoBehaviour
     public int oldsecond;//分
     [SerializeField]
     public float second;//秒
-     public GameObject time_obj = null;//タイマーのテキスト
+    public GameObject time_obj = null;//タイマーのテキスト
+
+    public bool end = false;
 
 
     void Start()
@@ -40,8 +42,8 @@ public class Timer : MonoBehaviour
 
         if(0 >= second  && 0 >= oldsecond)
         {
+            end = true;
             time_obj.SetActive(false);
-            SceneChangr.scenechangrInstance._fade.SceneFade("ResultScene");
         }
     }
 

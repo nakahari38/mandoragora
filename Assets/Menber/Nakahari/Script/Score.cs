@@ -13,8 +13,6 @@ public class Score : MonoBehaviour
     public int _cpu2Score;
     public int _cpu3Score;
 
-    int test = 0;
-
     private void Awake()
     {
         if (instance == null)
@@ -49,6 +47,5 @@ public class Score : MonoBehaviour
             _cpu2Score = 0;
             _cpu3Score = 0;
         }
-        Debug.Log(test);
     }
 }

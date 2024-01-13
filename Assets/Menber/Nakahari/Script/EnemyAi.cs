@@ -52,7 +52,7 @@ public class EnemyAi : MonoBehaviour
         if (_rb2D == null) _rb2D = GetComponent<Rigidbody2D>();
 
         if (_catch == null) _catch = GetComponent<Catch>();
-
+        if(_attackForce == null) _attackForce = GetComponent<AttackForce>();
         _fruitGeneration = GetComponent<FruitGeneration>();
 
         _firstPos = this.transform.position;

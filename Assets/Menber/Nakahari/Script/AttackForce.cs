@@ -21,6 +21,16 @@ public class AttackForce : MonoBehaviour
 
     private bool _judge = false;
 
+    private Animator _animator;
+
+    public int _count = 0;
+
+    private void Start()
+    {
+        if(_ult == null) _ult = GetComponent<ULT>();
+        if(_animator == null) _animator = GetComponent<Animator>();
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (!collision.gameObject.CompareTag("Ground") && !collision.gameObject.GetComponent<Fruit>())
@@ -46,10 +56,13 @@ public class AttackForce : MonoBehaviour
 
             Vector2 _directions = (collision.transform.position - this.transform.position).normalized;
 
-            if (_judge && this.CompareTag("Player")&&_ult.AvailableFlag())
+            if (_judge && this.CompareTag("Player") && _ult.AvailableFlag())
             {
+                _animator.SetTrigger("Ult");
                 _otherRb2d.AddForce(_directions * _blowAway, ForceMode2D.Impulse);
                 _ult.ResetUltScore();
+                _animator.SetTrigger("Normal");
+                _count++;
             }
         }
     }
