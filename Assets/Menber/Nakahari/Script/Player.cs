@@ -37,6 +37,8 @@ public class Player : MonoBehaviour
     private GameObject _flowerPot1;
     [SerializeField]
     private GameObject _flowerPot2;
+    [SerializeField]
+    CountDown _countDown;
 
     // Start is called before the first frame update
     void Start()
@@ -53,6 +55,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(_countDown._stop) return;
         if (Input.GetMouseButtonDown(0))
         {
             _startPos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);

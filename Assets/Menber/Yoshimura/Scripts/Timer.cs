@@ -15,6 +15,9 @@ public class Timer : MonoBehaviour
 
     public bool end = false;
 
+    [SerializeField]
+    CountDown _countDown;
+
 
     void Start()
     { 
@@ -24,6 +27,7 @@ public class Timer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (_countDown._stop) return;
         CountTime();     
     }
     void CountTime()

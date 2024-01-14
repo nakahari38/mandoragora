@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using TMPro;
 using UnityEngine;
 
 public class FruitGeneration: MonoBehaviour
@@ -26,13 +27,13 @@ public class FruitGeneration: MonoBehaviour
     Player _player;
     [SerializeField]
     EnemyAi _enemyAi;
-
-
-
+    [SerializeField]
+    CountDown _countDown;
 
     // Update is called once per frame
     void Update()
     {
+        if (_countDown._stop) return;
         _pace = _pace + Time.deltaTime;
 
         if (_pace > _sense)

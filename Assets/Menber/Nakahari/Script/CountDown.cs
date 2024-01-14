@@ -20,9 +20,10 @@ public class CountDown : MonoBehaviour
 
     bool end;
 
+    public bool _stop = true;
+
     private void Awake()
     {
-        Time.timeScale = 1f;
         if(_tmpG == null) _tmpG = GetComponent<TextMeshProUGUI>();
         _timer.time_obj.SetActive(false);
     }
@@ -35,6 +36,7 @@ public class CountDown : MonoBehaviour
     {
         if (_timer.end == false) return;
         StartCoroutine(EndCountDown());
+        Debug.Log(_stop);
     }
 
     IEnumerator StartCountDown()
@@ -47,8 +49,8 @@ public class CountDown : MonoBehaviour
             yield return new WaitForSeconds(1f);
             _count--;
         }
-        Time.timeScale = 1;
         _tmpG.text = "\n‚¢‚½‚¾‚«‚Ü‚·I";
+        _stop = false;
         _timer.time_obj.SetActive(true);
         _count = _time;
         while (_count > 0)
@@ -62,10 +64,10 @@ public class CountDown : MonoBehaviour
     IEnumerator EndCountDown()
     {
         _count = _time;
-        Time.timeScale = 0.5f;
         _tmpG.text = "‚²‚¿‚»‚¤‚³‚Ü‚Å‚µ‚½I";
         _tmpG.enabled = true;
-        while (_count > 1.5f)
+        _stop = true;
+        while (_count > 0)
         {
             yield return new WaitForSeconds(1f);
             _count--;

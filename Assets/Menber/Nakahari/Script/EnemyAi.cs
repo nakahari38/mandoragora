@@ -35,6 +35,9 @@ public class EnemyAi : MonoBehaviour
 
     AttackForce _attackForce;
 
+    [SerializeField]
+    CountDown _countDown;
+
     // ˆÈ‰º‚Í‰¼’u‚«
 
     // float skilGage = 0;
@@ -59,13 +62,9 @@ public class EnemyAi : MonoBehaviour
         _firstRot = this.transform.rotation;
     }
 
-    IEnumerator Space()
-    {
-        yield return new WaitForSeconds(_spaceTime);
-    }
-
     private void Update()
     {
+        if (_countDown._stop) return;
         Vector2 tracking = _player.position - this.transform.position;
         if(_rb2D.velocity.magnitude <= _catch._aiSpeed)
         {
