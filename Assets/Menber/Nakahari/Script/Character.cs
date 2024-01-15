@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Character : MonoBehaviour
 {
     Image _image;
+    [SerializeField]
     Result _result;
 
     public Sprite _playerSprite;

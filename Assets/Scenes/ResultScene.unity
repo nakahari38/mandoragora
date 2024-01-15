@@ -765,8 +765,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 79f3a58c6a64611479c503be83bc78ff, type: 2}
+  m_sharedMaterial: {fileID: -5814459495274845248, guid: 79f3a58c6a64611479c503be83bc78ff, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -790,8 +790,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 150
-  m_fontSizeBase: 150
+  m_fontSize: 120
+  m_fontSizeBase: 120
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1488,6 +1488,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f7987865b664a64381c94a2a58660f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _result: {fileID: 737731163}
   _playerSprite: {fileID: 21300000, guid: c09f71747b01d394680da04e053bb34e, type: 3}
   _cpu1Sprite: {fileID: 21300000, guid: 2bfef7ef75a2b0041bc190a83122b0a0, type: 3}
   _cpu2Sprite: {fileID: 21300000, guid: c7f31b9828fe3f24f87a47d69f3ce80d, type: 3}

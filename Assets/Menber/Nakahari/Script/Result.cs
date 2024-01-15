@@ -22,16 +22,16 @@ public class Result : MonoBehaviour
         switch (GetScore())
         {
             case 1:
-                _tmpG.text = "1位\nよく頑張りました!\n食べた個数：" + _score._playerScore;
+                _tmpG.text = "No.1\nよくがんばりました!\nたべたかず：" + _score._playerScore;
             break;
             case 2:
-                _tmpG.text = "1位\nよく頑張りました!\n食べた個数：" + _score._cpu1Score;
+                _tmpG.text = "No.1\nよくがんばりました!\nたべたかず：" + _score._cpu1Score;
             break;
             case 3:
-                _tmpG.text = "1位\nよく頑張りました!\n食べた個数：" + _score._cpu2Score;
+                _tmpG.text = "No.1\nよくがんばりました!\nたべたかず：" + _score._cpu2Score;
             break;
             case 4:
-                _tmpG.text = "1位\nよく頑張りました!\n食べた個数：" + _score._cpu3Score;
+                _tmpG.text = "No.1\nよくがんばりました!\nたべたかず：" + _score._cpu3Score;
             break;
         }
 
