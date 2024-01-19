@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UltImageMask : MonoBehaviour
 {
@@ -11,17 +12,17 @@ public class UltImageMask : MonoBehaviour
     [SerializeField]
     private int MultiNum = 20;
 
-    RectTransform rectTransform;
+    RectMask2D rectMask2D;
 
     private void Awake()
     {
-        rectTransform = gameObject.GetComponent<RectTransform>();
+        rectMask2D = GetComponent<RectMask2D>();
         _ult= parent.GetComponent<ULT>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        rectTransform.sizeDelta = new Vector2(rectTransform.sizeDelta.x, _ult.UltScore * MultiNum);
+        rectMask2D.padding = new Vector4(_ult.UltScore * MultiNum, 0f, 0f, 0f);
     }
 }
