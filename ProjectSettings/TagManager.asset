@@ -11,6 +11,7 @@ TagManager:
   - CPU1
   - CPU2
   - CPU3
+  - Wall
   layers:
   - Default
   - TransparentFX

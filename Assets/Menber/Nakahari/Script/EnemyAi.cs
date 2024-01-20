@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -28,6 +29,12 @@ public class EnemyAi : MonoBehaviour
 
     [SerializeField]
     Transform _player;
+    [SerializeField]
+    Transform _cpu1;
+    [SerializeField]
+    Transform _cpu2;
+    [SerializeField]
+    Transform _cpu3;
 
     public bool _judge = false;
 
@@ -37,6 +44,26 @@ public class EnemyAi : MonoBehaviour
 
     [SerializeField]
     CountDown _countDown;
+
+    [SerializeField]
+    GameObject _effect;
+
+    Vector2 _hitPos;
+
+    [SerializeField]
+    float _respawmTime;
+
+    float _respawn;
+
+    [SerializeField]
+    int times;
+
+    [SerializeField]
+    int _count;
+
+    Vector2 tracking;
+
+    Vector3 _pos;
 
     // à»â∫ÇÕâºíuÇ´
 
@@ -65,7 +92,8 @@ public class EnemyAi : MonoBehaviour
     private void Update()
     {
         if (_countDown._stop) return;
-        Vector2 tracking = _player.position - this.transform.position;
+        StartCoroutine(State());
+        tracking = _pos - this.transform.position;
         if(_rb2D.velocity.magnitude <= _catch._aiSpeed)
         {
             _rb2D.AddForce(tracking * _move, ForceMode2D.Force);
@@ -74,7 +102,9 @@ public class EnemyAi : MonoBehaviour
         #region èÍäOÇ…èoÇΩéûÇÃèàóù
         if (this.transform.position.x >= 2300 || this.transform.position.x <= -2300)
         {
+            StartCoroutine(Respawn());
             _rb2D.velocity = Vector3.zero;
+            if (_respawn > 0) return;
             this.transform.position = _firstPos;
             this.transform.rotation = _firstRot;
             random = Random.Range(1, 4);
@@ -84,10 +114,6 @@ public class EnemyAi : MonoBehaviour
                 if (_score._cpu1Score <= 3) return;
                 if (_score._cpu1Score <= 24)
                 {
-                    /*do
-                    {
-                        random = Random.Range(1, 3);
-                    } while (IsConditions(random));*/
                     switch (random)
                     {
                         case 1:
@@ -106,10 +132,6 @@ public class EnemyAi : MonoBehaviour
                 }
                 else if (_score._cpu1Score <= 48)
                 {
-                    /*do
-                    {
-                        random = Random.Range(1, 3);
-                    } while (IsConditions2(random));*/
                     switch (random)
                     {
                         case 1:
@@ -128,10 +150,6 @@ public class EnemyAi : MonoBehaviour
                 }
                 else if (_score._cpu1Score <= 72)
                 {
-                    /*do
-                    {
-                        random = Random.Range(1, 3);
-                    } while (IsConditions3(random));*/
                     switch (random)
                     {
                         case 1:
@@ -150,10 +168,6 @@ public class EnemyAi : MonoBehaviour
                 }
                 else
                 {
-                    /*do
-                    {
-                        random = Random.Range(1, 3);
-                    } while (IsConditions4(random));*/
                     switch (random)
                     {
                         case 1:
@@ -177,10 +191,6 @@ public class EnemyAi : MonoBehaviour
                 if (_score._cpu2Score <= 3) return;
                 if (_score._cpu2Score <= 24)
                 {
-                    do
-                    {
-                        random = Random.Range(1, 3);
-                    } while (IsConditions(random));
                     switch (random)
                     {
                         case 1:
@@ -196,10 +206,6 @@ public class EnemyAi : MonoBehaviour
                 }
                 else if (_score._cpu2Score <= 48)
                 {
-                    do
-                    {
-                        random = Random.Range(1, 3);
-                    } while (IsConditions2(random));
                     switch (random)
                     {
                         case 1:
@@ -215,10 +221,6 @@ public class EnemyAi : MonoBehaviour
                 }
                 else if (_score._cpu2Score <= 72)
                 {
-                    do
-                    {
-                        random = Random.Range(1, 3);
-                    } while (IsConditions3(random));
                     switch (random)
                     {
                         case 1:
@@ -234,10 +236,6 @@ public class EnemyAi : MonoBehaviour
                 }
                 else
                 {
-                    do
-                    {
-                        random = Random.Range(1, 3);
-                    } while (IsConditions4(random));
                     switch (random)
                     {
                         case 1:
@@ -258,10 +256,6 @@ public class EnemyAi : MonoBehaviour
                 if (_score._cpu3Score <= 3) return;
                 if (_score._cpu3Score <= 24)
                 {
-                    do
-                    {
-                        random = Random.Range(1, 3);
-                    } while (IsConditions(random));
                     switch (random)
                     {
                         case 1:
@@ -277,10 +271,6 @@ public class EnemyAi : MonoBehaviour
                 }
                 else if (_score._cpu3Score <= 48)
                 {
-                    do
-                    {
-                        random = Random.Range(1, 3);
-                    } while (IsConditions2(random));
                     switch (random)
                     {
                         case 1:
@@ -296,10 +286,6 @@ public class EnemyAi : MonoBehaviour
                 }
                 else if (_score._cpu3Score <= 72)
                 {
-                    do
-                    {
-                        random = Random.Range(1, 3);
-                    } while (IsConditions3(random));
                     switch (random)
                     {
                         case 1:
@@ -315,10 +301,6 @@ public class EnemyAi : MonoBehaviour
                 }
                 else
                 {
-                    do
-                    {
-                        random = Random.Range(1, 3);
-                    } while (IsConditions4(random));
                     switch (random)
                     {
                         case 1:
@@ -338,6 +320,55 @@ public class EnemyAi : MonoBehaviour
 
         #endregion
         //Debug.Log(rb2D.velocity.magnitude);
+    }
+
+    IEnumerator State()
+    {
+        _count = times;
+        int _random = Random.Range(1, 4);
+        while (_count > 0)
+        {
+            yield return new WaitForSeconds(1f);
+            _count--;
+        }
+        switch (_random)
+        {
+            case 1:
+                _pos = _player.position;
+            break;
+            case 2:
+                _pos = _cpu1.position;
+            break;
+            case 3:
+                _pos = _cpu2.position;
+            break;
+            case 4:
+                _pos = _cpu3.position;
+            break;
+
+        }
+    }
+
+    IEnumerator Respawn()
+    {
+        _respawn = _respawmTime;
+        while(_respawn > 0)
+        {
+            yield return new WaitForSeconds(1f);
+            _respawn--;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("CPU1") || collision.gameObject.CompareTag("CPU2") || collision.gameObject.CompareTag("CPU3"))
+        {
+            foreach (ContactPoint2D hitPoint in collision.contacts)
+            {
+                _hitPos = hitPoint.point;
+            }
+            Instantiate(_effect, new Vector2(_hitPos.x, _hitPos.y), Quaternion.identity);
+        }
     }
 
     #region èåèîªíË

@@ -39,6 +39,10 @@ public class Player : MonoBehaviour
     private GameObject _flowerPot2;
     [SerializeField]
     CountDown _countDown;
+    [SerializeField]
+    float _respawmTime;
+
+    float _respawn;
 
     // Start is called before the first frame update
     void Start()
@@ -79,13 +83,13 @@ public class Player : MonoBehaviour
         }
 
         #region êŠO‚Éo‚½Žž‚Ìˆ—
-        if (this.transform.position.x >= 2300 || this.transform.position.x <= -2300)
+        if (this.transform.position.x >= 2500 || this.transform.position.x <= -2500)
         {
-            _ult.AddUltScore(-2);
+            StartCoroutine(Respawn());
             _attackForce._power -= 100;
+            //_ult.AddUltScore(-2);
             _rb2D.velocity = Vector3.zero;
-            this.transform.position = _firstPos;
-            this.transform.rotation = _firstRot;
+            StartCoroutine(Respawn());
             _judge = true;
             random = Random.Range(1, 4);
             if (_score._playerScore <= 3) return;
@@ -182,6 +186,18 @@ public class Player : MonoBehaviour
         #endregion
 
         //Debug.Log(rb2D.velocity.magnitude);
+    }
+
+    IEnumerator Respawn()
+    {
+        _respawn = _respawmTime;
+        while (_respawn > 0)
+        {
+            yield return new WaitForSeconds(1f);
+            _respawn--;
+        }
+        this.transform.position = _firstPos;
+        this.transform.rotation = _firstRot;
     }
 
     void FlickDirection()
