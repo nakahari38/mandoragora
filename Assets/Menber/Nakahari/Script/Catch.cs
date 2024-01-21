@@ -54,7 +54,10 @@ public class Catch : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Apple"))
         {
-            _ult.AddUltScore(1);
+            if (_ult.UltScore < 20)
+            {
+                _ult.AddUltScore(1);
+            }
             _attackForce._power += _variable;
             _apple++;
             this.transform.localScale +=  new Vector3(0.5f, 0.5f, 0.5f);
@@ -64,7 +67,10 @@ public class Catch : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Orange"))
         {
-            _ult.AddUltScore(1);
+            if (_ult.UltScore < 20)
+            {
+                _ult.AddUltScore(1);
+            }
             if (_speed > 1)
             {
                 _speed--;
@@ -82,7 +88,10 @@ public class Catch : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Pair"))
         {
-            _ult.AddUltScore(1);
+            if (_ult.UltScore < 20)
+            {
+                _ult.AddUltScore(1);
+            }
             if (_attackForce._endurance > 1)
             {
                 _attackForce._endurance--;

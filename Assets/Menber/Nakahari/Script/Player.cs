@@ -19,38 +19,24 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float _move;
 
-    private Vector3 _firstPos;
-    private Quaternion _firstRot;
+    public Vector3 _firstPos;
+    public Quaternion _firstRot;
 
     private Vector2 force;
 
-    [SerializeField]
-    Score _score;
-
-    public bool _judge = false;
-
     public int random;
-
-    private ULT _ult;
-
     [SerializeField]
     private GameObject _flowerPot1;
     [SerializeField]
     private GameObject _flowerPot2;
     [SerializeField]
     CountDown _countDown;
-    [SerializeField]
-    float _respawmTime;
-
-    float _respawn;
 
     // Start is called before the first frame update
     void Start()
     {
-        _score = Score.instance.GetComponent<Score>();
         if (_rb2D == null) _rb2D = GetComponent<Rigidbody2D>();
         if(_catch == null) _catch = GetComponent<Catch>();
-        if (_ult == null) _ult = GetComponent<ULT>();
         if(_attackForce == null) _attackForce = GetComponent<AttackForce>();
         _firstPos = this.transform.position;
         _firstRot = this.transform.rotation;
@@ -81,123 +67,7 @@ public class Player : MonoBehaviour
                 _flowerPot2.SetActive(false);
             break;
         }
-
-        #region êŠO‚Éo‚½Žž‚Ìˆ—
-        if (this.transform.position.x >= 2500 || this.transform.position.x <= -2500)
-        {
-            StartCoroutine(Respawn());
-            _attackForce._power -= 100;
-            //_ult.AddUltScore(-2);
-            _rb2D.velocity = Vector3.zero;
-            StartCoroutine(Respawn());
-            _judge = true;
-            random = Random.Range(1, 4);
-            if (_score._playerScore <= 3) return;
-            if (_score._playerScore <= 24)
-            {
-                /*do
-                {
-                    random = Random.Range(1, 3);
-                } while (IsConditions(random));*/
-                switch (random)
-                {
-                    case 1:
-                        if (_catch._apple <= 3) return;
-                        _catch._apple -= 4;
-                        break;
-                    case 2:
-                        if (_catch._orange <= 3) return;
-                        _catch._orange -= 4;
-                        break;
-                    case 3:
-                        if (_catch._pair <= 3) return;
-                        _catch._pair -= 4;
-                        break;
-                }
-            }
-            else if( _score._playerScore <= 48)
-            {
-                /*do
-                {
-                    random = Random.Range(1, 3);
-                } while (IsConditions2(random));*/
-                switch (random)
-                {
-                    case 1:
-                        if (_catch._apple <= 7) return;
-                        _catch._apple -= 8;
-                        break;
-                    case 2:
-                        if (_catch._orange <= 7) return;
-                        _catch._orange -= 8;
-                        break;
-                    case 3:
-                        if (_catch._pair <= 7) return;
-                        _catch._pair -= 8;
-                        break;
-                }
-            }
-            else if(_score._playerScore <= 72)
-            {
-                /*do
-                {
-                    random = Random.Range(1, 3);
-                } while (IsConditions3(random));*/
-                switch (random)
-                {
-                    case 1:
-                        if (_catch._apple <= 11) return;
-                        _catch._apple -= 12;
-                        break;
-                    case 2:
-                        if (_catch._orange <= 11) return;
-                        _catch._orange -= 12;
-                        break;
-                    case 3:
-                        if (_catch._pair <= 11) return;
-                        _catch._pair -= 12;
-                        break;
-                }
-            }
-            else
-            {
-                /*do
-                {
-                    random = Random.Range(1, 3);
-                } while (IsConditions4(random));*/
-                switch (random)
-                {
-                    case 1:
-                        if (_catch._apple <= 15) return;
-                        _catch._apple -= 16;
-                        break;
-                    case 2:
-                        if (_catch._orange <= 15) return;
-                        _catch._orange -= 16;
-                        break;
-                    case 3:
-                        if (_catch._pair <= 15) return;
-                        _catch._pair -= 16;
-                        break;
-                }
-            }
-        }
-
-        #endregion
-
         //Debug.Log(rb2D.velocity.magnitude);
-    }
-
-    IEnumerator Respawn()
-    {
-        _respawn = _respawmTime;
-        while (_respawn > 0)
-        {
-            yield return new WaitForSeconds(1f);
-            _respawn--;
-        }
-        this.transform.position = _firstPos;
-        this.transform.rotation = _firstRot;
     }
 
     void FlickDirection()
@@ -213,62 +83,5 @@ public class Player : MonoBehaviour
         FlickDirection();
         force = new Vector2(_flickValue_x, _flickValue_y);
         _rb2D.AddForce(force * (_move + _catch._speed));
-    }
-
-    public bool IsConditions(int value)
-    {
-        switch (value)
-        {
-            case 1:
-                return _catch._apple <= 3;
-            case 2:
-                return _catch._orange <= 3;
-            case 3:
-                return _catch._pair <= 3;
-            default:
-                return true;
-        }
-    }
-    public bool IsConditions2(int value)
-    {
-        switch (value)
-        {
-            case 1:
-                return _catch._apple <= 7;
-            case 2:
-                return _catch._orange <= 7;
-            case 3:
-                return _catch._pair <= 7;
-            default:
-                return true;
-        }
-    }
-    public bool IsConditions3(int value)
-    {
-        switch (value)
-        {
-            case 1:
-                return _catch._apple <= 11;
-            case 2:
-                return _catch._orange <= 11;
-            case 3:
-                return _catch._pair <= 11;
-            default:
-                return true;
-        }
-    }
-    public bool IsConditions4(int value)
-    {
-        switch (value)
-        {
-            case 1:
-                return _catch._apple <= 15;
-            case 2:
-                return _catch._orange <= 15;
-            case 3:
-                return _catch._pair <= 15;
-            default:
-                return true;
-        }
     }
 }

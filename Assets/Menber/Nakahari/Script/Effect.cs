@@ -21,7 +21,6 @@ public class Effect : MonoBehaviour
     void Start()
     {
         _stateLength = _infAnim.length;
-        _animator.SetBool("Effect", true);
     }
 
     // Update is called once per frame

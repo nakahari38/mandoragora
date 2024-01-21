@@ -64,6 +64,33 @@ public class AttackForce : MonoBehaviour
                 _animator.SetTrigger("Normal");
                 _count++;
             }
+
+            if(this.CompareTag("CPU1") && _ult.AvailableFlag())
+            {
+                _animator.SetTrigger("Ult");
+                _otherRb2d.AddForce(_directions * _blowAway, ForceMode2D.Impulse);
+                _ult.ResetUltScore();
+                _animator.SetTrigger("Normal");
+                _count++;
+            }
+
+            if (this.CompareTag("CPU2") && _ult.AvailableFlag())
+            {
+                _animator.SetTrigger("Ult");
+                _otherRb2d.AddForce(_directions * _blowAway, ForceMode2D.Impulse);
+                _ult.ResetUltScore();
+                _animator.SetTrigger("Normal");
+                _count++;
+            }
+
+            if (this.CompareTag("CPU3") && _ult.AvailableFlag())
+            {
+                _animator.SetTrigger("Ult");
+                _otherRb2d.AddForce(_directions * _blowAway, ForceMode2D.Impulse);
+                _ult.ResetUltScore();
+                _animator.SetTrigger("Normal");
+                _count++;
+            }
         }
     }
 
@@ -75,8 +102,6 @@ public class AttackForce : MonoBehaviour
             Invoke("Judge", 0.3f);
             Debug.Log("ダブルタップ");
         }
-
-        //Debug.Log(_judge);
     }
 
     void Judge()
