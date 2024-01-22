@@ -19,6 +19,7 @@ public class Result : MonoBehaviour
 
     void Start()
     {
+        // 返ってきた1～4によって表示するスコアを変える
         switch (GetScore())
         {
             case 1:
@@ -40,14 +41,15 @@ public class Result : MonoBehaviour
 
     public int GetScore()
     {
-        _highScore = Mathf.Max(_score._playerScore, Mathf.Max(_score._cpu1Score, Mathf.Max(_score._cpu2Score, _score._cpu3Score)));
+        // 一番多いスコアを取得しif文でそれぞれを比較し1～4で返す
+        _highScore = Mathf.Max(_score._playerScore, _score._cpu1Score, _score._cpu2Score, _score._cpu3Score);
         if (_highScore == _score._playerScore)
             return 1;
         else if (_highScore == _score._cpu1Score)
             return 2;
         else if (_highScore == _score._cpu2Score)
             return 3;
-        else
+        else　
             return 4;
     }
 }

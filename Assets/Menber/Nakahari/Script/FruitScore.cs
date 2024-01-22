@@ -25,6 +25,7 @@ public class FruitScore: MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // それぞれのスコアを表示する
         _appleScore.text = _catch._apple.ToString();
         _orangeScore.text = _catch._orange.ToString();
         _pairScore.text = _catch._pair.ToString();

@@ -27,10 +27,10 @@ public class Blinking : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*_time += Time.deltaTime;
-        var value = Mathf.Repeat((float)_time, _cycle);
-        _color.b = value >= _cycle * 0.5f ? 1 : 0;*/
+
     }
+
+    // ‰¤Š¥‚ğíŒõ‚ç‚¹‚éó‘Ô‚Æ“_–Åó‘Ô‚ğŒğŒİ‚É‚·‚é
 
     IEnumerator Change()
     {

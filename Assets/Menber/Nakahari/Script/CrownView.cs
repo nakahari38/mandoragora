@@ -31,6 +31,7 @@ public class CrownView : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // それぞれのスコアに応じて一番高いスコアを持っているキャラに王冠を表示する
         _max = Mathf.Max(_score._playerScore, _score._cpu1Score, _score._cpu2Score, _score._cpu3Score);
 
         if(_max == _score._playerScore)

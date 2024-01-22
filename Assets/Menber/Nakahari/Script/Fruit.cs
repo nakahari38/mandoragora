@@ -15,8 +15,6 @@ public class Fruit : MonoBehaviour
 
     public Vector3 _thisPosition;
 
-    private float _deleteTime = 10f;
-
     public void Setup(System.Action<Fruit> deadCallback)
     {
         _deadCallback = deadCallback;
@@ -25,6 +23,7 @@ public class Fruit : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // 画面左右のどちらに出たかの判定
         if (_rb2D == null) _rb2D = GetComponent<Rigidbody2D>();
         if(this.gameObject.transform.position.x <= -1)
         {
@@ -54,25 +53,18 @@ public class Fruit : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        // 地面に触れたら力を加える
         if (collision.gameObject.CompareTag("Ground"))
         {
             //StartCoroutine(Delete()); // フルーツが落ちてから10秒で消す場合のコード
 
             _force = new Vector2(_index*100, 0);  
         }
-
+        // キャラクターに触れたら削除する
         if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("CPU1") || collision.gameObject.CompareTag("CPU2") || collision.gameObject.CompareTag("CPU3"))
         {
             _deadCallback?.Invoke(this);
             Destroy(gameObject);
         }
-    }
-
-
-    IEnumerator Delete()
-    {
-        yield return new WaitForSeconds(_deleteTime);
-        _deadCallback?.Invoke(this);
-        Destroy(gameObject);
     }
 }

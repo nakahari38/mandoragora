@@ -34,6 +34,7 @@ public class FruitGeneration: MonoBehaviour
     void Update()
     {
         if (_countDown._stop) return;
+        // ˆê’èŠÔŠu‚Å‰Ê•¨“Á’è‚Ì”ÍˆÍ“à‚Åƒ‰ƒ“ƒ_ƒ€‚É—‚Æ‚·
         _pace = _pace + Time.deltaTime;
 
         if (_pace > _sense)

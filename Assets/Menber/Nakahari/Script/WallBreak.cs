@@ -25,8 +25,10 @@ public class WallBreak : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        // FruitComponent以外を持っている場合
         if (!collision.gameObject.GetComponent<Fruit>())
         {
+            // CatchComponentを取得してそれぞれの合計値を計算しその値が15を超えていた場合bool値をtrueにする
             Catch _othercatch = collision.gameObject.GetComponent<Catch>();
             if (_othercatch._apple + _othercatch._pair + _othercatch._orange >= 15)
             {
@@ -46,6 +48,7 @@ public class WallBreak : MonoBehaviour
 
     IEnumerator BreakTime(float time)
     {
+        // 壁を一定間隔で点滅させる
         _time += Time.deltaTime;
         var value = Mathf.Repeat(_time * _speed, _cycle);
         if (value < 0.5f)

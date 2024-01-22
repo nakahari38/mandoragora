@@ -33,7 +33,8 @@ public class AttackForce : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (!collision.gameObject.CompareTag("Ground") && !collision.gameObject.GetComponent<Fruit>())
+        // 特定のTagとComponentを持ってるオブジェクト以外に当たったら、相手のRigidbody2Dを取得し自身の位置と相手の位置を取って自分と反対方向に飛ばす
+        if (!collision.gameObject.CompareTag("Ground") && !collision.gameObject.GetComponent<Fruit>() && !collision.gameObject.CompareTag("Wall"))
         {
             Rigidbody2D _otherRb2d = collision.gameObject.GetComponent<Rigidbody2D>();
             if (_otherRb2d == null) return;
@@ -42,19 +43,20 @@ public class AttackForce : MonoBehaviour
 
             _otherRb2d.AddForce(_directions * _power / _endurance, ForceMode2D.Impulse);
 
-            //Debug.Log(_directions);
-            
         }
     }
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (!collision.gameObject.CompareTag("Ground") && !collision.gameObject.GetComponent<Fruit>())
+        if (!collision.gameObject.CompareTag("Ground") && !collision.gameObject.GetComponent<Fruit>() && !collision.gameObject.CompareTag("Wall"))
         {
             Rigidbody2D _otherRb2d = collision.gameObject.GetComponent<Rigidbody2D>();
             if (_otherRb2d == null) return;
 
             Vector2 _directions = (collision.transform.position - this.transform.position).normalized;
+
+            // ゲージが溜まっている場合プレイヤーはダブルタップかつ相手に触れていると相手を吹き飛ばす。
+            // CPUの場合自身がPlayerのTagをもってないかつゲージが溜まっていて相手に触れていると相手を吹き飛ばす
 
             if (_judge && this.CompareTag("Player") && _ult.AvailableFlag())
             {
@@ -65,25 +67,7 @@ public class AttackForce : MonoBehaviour
                 _count++;
             }
 
-            if(this.CompareTag("CPU1") && _ult.AvailableFlag())
-            {
-                _animator.SetTrigger("Ult");
-                _otherRb2d.AddForce(_directions * _blowAway, ForceMode2D.Impulse);
-                _ult.ResetUltScore();
-                _animator.SetTrigger("Normal");
-                _count++;
-            }
-
-            if (this.CompareTag("CPU2") && _ult.AvailableFlag())
-            {
-                _animator.SetTrigger("Ult");
-                _otherRb2d.AddForce(_directions * _blowAway, ForceMode2D.Impulse);
-                _ult.ResetUltScore();
-                _animator.SetTrigger("Normal");
-                _count++;
-            }
-
-            if (this.CompareTag("CPU3") && _ult.AvailableFlag())
+            if(!this.CompareTag("Player") && _ult.AvailableFlag())
             {
                 _animator.SetTrigger("Ult");
                 _otherRb2d.AddForce(_directions * _blowAway, ForceMode2D.Impulse);
@@ -96,6 +80,7 @@ public class AttackForce : MonoBehaviour
 
     private void Update()
     {
+        
         if (Input.GetMouseButtonDown(0))
         {
             _touchCount++;
@@ -104,6 +89,7 @@ public class AttackForce : MonoBehaviour
         }
     }
 
+    // ダブルタップしたかどうかの判定
     void Judge()
     {
         if (_touchCount != 2)

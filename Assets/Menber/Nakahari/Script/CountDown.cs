@@ -39,6 +39,7 @@ public class CountDown : MonoBehaviour
         Debug.Log(_stop);
     }
 
+    // 最初のカウントダウン
     IEnumerator StartCountDown()
     {
         _tmpG.enabled = true;
@@ -60,7 +61,7 @@ public class CountDown : MonoBehaviour
         }
         _tmpG.enabled = false;
     }
-
+    // 最後のカウントダウン
     IEnumerator EndCountDown()
     {
         _count = _time;

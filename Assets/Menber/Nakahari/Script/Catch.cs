@@ -52,6 +52,8 @@ public class Catch : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        // それぞれの果物を取った際に特定のステータスに増加させる処理
+        // 果物を取った際自身のScaleに0.5fずつ追加する
         if (collision.gameObject.CompareTag("Apple"))
         {
             if (_ult.UltScore < 20)

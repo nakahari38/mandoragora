@@ -20,6 +20,8 @@ public class Character : MonoBehaviour
         _image = GetComponent<Image>();
         if(_result == null) _result = GetComponent<Result>();
     }
+
+    // それぞれのスコアに応じて一番スコアが高いキャラクターをリザルトに表示する
     private void Start()
     {
         switch (_result.GetScore())

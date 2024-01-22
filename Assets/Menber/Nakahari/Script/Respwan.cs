@@ -28,7 +28,8 @@ public class Respwan : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("Player"))
+        // 触れたオブジェクトのComponentを取得しそれぞれの処理を行い、初期位置にスポーンさせる
+        if (collision.gameObject.CompareTag("Player"))
         {
             _player = collision.GetComponent<Player>();
             _rb2d = collision.GetComponent<Rigidbody2D>();
@@ -108,9 +109,13 @@ public class Respwan : MonoBehaviour
         collision.gameObject.SetActive(true);
     }
 
+    #region 場外に出た際に果物を消す処理
+    // ランダムに1～3を取得しその数によって特定の果物を減らす
+    // 合計値によって減る果物の量が変わる
     void PlayerLost(Collider2D collision)
     {
-        random = Random.Range(1, 4);
+        
+        random = Random.Range(1, 3);
         if (_score._playerScore <= 3) return;
         if (_score._playerScore <= 24)
         {
@@ -407,4 +412,6 @@ public class Respwan : MonoBehaviour
             }
         }
     }
+
+    #endregion
 }

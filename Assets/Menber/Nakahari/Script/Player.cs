@@ -46,6 +46,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         if(_countDown._stop) return;
+        // ボタンを押して離した場所を取得する
         if (Input.GetMouseButtonDown(0))
         {
             _startPos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
@@ -57,6 +58,7 @@ public class Player : MonoBehaviour
             GetDirection();
         }
 
+        // 技を使った回数を取得しそれに応じて鉢を表示、非表示にする
         switch (_attackForce._count)
         {
             case 1:
@@ -72,6 +74,7 @@ public class Player : MonoBehaviour
 
     void FlickDirection()
     {
+        // 取得した変数を計算しどの程度フリックしたのかを取得する
         _flickValue_x = _endPos.x - _startPos.x;
         _flickValue_y = _endPos.y - _startPos.y;
         //Debug.Log("x フリック量は" + flickValue_x);
@@ -80,6 +83,7 @@ public class Player : MonoBehaviour
 
     void GetDirection()
     {
+        // フリックした方向に力を加える
         FlickDirection();
         force = new Vector2(_flickValue_x, _flickValue_y);
         _rb2D.AddForce(force * (_move + _catch._speed));

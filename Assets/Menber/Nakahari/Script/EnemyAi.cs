@@ -90,6 +90,7 @@ public class EnemyAi : MonoBehaviour
         if (_countDown._stop) return;
         _pace = _pace + Time.deltaTime;
 
+        // 一定間隔で狙う相手を変える
         if (_pace > _sense)
         {
             int _random = Random.Range(1, 4);
@@ -115,7 +116,7 @@ public class EnemyAi : MonoBehaviour
             _pace = 0f;
         }
 
-        //StartCoroutine(State());
+        // 相手と自身のpositonを計算しその方向に最大速度を制限しながら力を加える
         tracking = _pos - this.transform.position;
         if(_rb2D.velocity.magnitude <= _catch._aiSpeed)
         {
@@ -136,33 +137,7 @@ public class EnemyAi : MonoBehaviour
         //Debug.Log(rb2D.velocity.magnitude);
     }
 
-/*    IEnumerator State()
-    {
-        _count = times;
-        int _random = Random.Range(1, 4);
-        while (_count > 0)
-        {
-            yield return new WaitForSeconds(1f);
-            _count--;
-        }
-        switch (_random)
-        {
-            case 1:
-                _pos = _player.position;
-            break;
-            case 2:
-                _pos = _cpu1.position;
-            break;
-            case 3:
-                _pos = _cpu2.position;
-            break;
-            case 4:
-                _pos = _cpu3.position;
-            break;
-
-        }
-    }*/
-
+    // Colliderの衝突した位置を計算してぶつかった位置にエフェクトをInstantiateする
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("CPU1") || collision.gameObject.CompareTag("CPU2") || collision.gameObject.CompareTag("CPU3"))
