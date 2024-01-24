@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class AttackForce : MonoBehaviour
 {
-    [Header("‚«”ò‚Î‚µ—Í")]
+    [Header("å¹ãé£›ã°ã—åŠ›")]
     [SerializeField]
     public float _power;
-    [Header("‘Ï‹v—Í")]
+    [Header("è€ä¹…åŠ›")]
     [SerializeField]
     public float _endurance;
-    [Header("•KE‹Z‚Ì‚«”ò‚Î‚µ—Í")]
+    [Header("å¿…æ®ºæŠ€ã®å¹ãé£›ã°ã—åŠ›")]
     [SerializeField]
     public float _blowAway;
 
@@ -33,7 +33,7 @@ public class AttackForce : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // “Á’è‚ÌTag‚ÆComponent‚ğ‚Á‚Ä‚éƒIƒuƒWƒFƒNƒgˆÈŠO‚É“–‚½‚Á‚½‚çA‘Šè‚ÌRigidbody2D‚ğæ“¾‚µ©g‚ÌˆÊ’u‚Æ‘Šè‚ÌˆÊ’u‚ğæ‚Á‚Ä©•ª‚Æ”½‘Î•ûŒü‚É”ò‚Î‚·
+        // ç‰¹å®šã®Tagã¨Componentã‚’æŒã£ã¦ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆä»¥å¤–ã«å½“ãŸã£ãŸã‚‰ã€ç›¸æ‰‹ã®Rigidbody2Dã‚’å–å¾—ã—è‡ªèº«ã®ä½ç½®ã¨ç›¸æ‰‹ã®ä½ç½®ã‚’å–ã£ã¦è‡ªåˆ†ã¨åå¯¾æ–¹å‘ã«é£›ã°ã™
         if (!collision.gameObject.CompareTag("Ground") && !collision.gameObject.GetComponent<Fruit>() && !collision.gameObject.CompareTag("Wall"))
         {
             Rigidbody2D _otherRb2d = collision.gameObject.GetComponent<Rigidbody2D>();
@@ -55,8 +55,8 @@ public class AttackForce : MonoBehaviour
 
             Vector2 _directions = (collision.transform.position - this.transform.position).normalized;
 
-            // ƒQ[ƒW‚ª—­‚Ü‚Á‚Ä‚¢‚éê‡ƒvƒŒƒCƒ„[‚Íƒ_ƒuƒ‹ƒ^ƒbƒv‚©‚Â‘Šè‚ÉG‚ê‚Ä‚¢‚é‚Æ‘Šè‚ğ‚«”ò‚Î‚·B
-            // CPU‚Ìê‡©g‚ªPlayer‚ÌTag‚ğ‚à‚Á‚Ä‚È‚¢‚©‚ÂƒQ[ƒW‚ª—­‚Ü‚Á‚Ä‚¢‚Ä‘Šè‚ÉG‚ê‚Ä‚¢‚é‚Æ‘Šè‚ğ‚«”ò‚Î‚·
+            // ã‚²ãƒ¼ã‚¸ãŒæºœã¾ã£ã¦ã„ã‚‹å ´åˆãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã¯ãƒ€ãƒ–ãƒ«ã‚¿ãƒƒãƒ—ã‹ã¤ç›¸æ‰‹ã«è§¦ã‚Œã¦ã„ã‚‹ã¨ç›¸æ‰‹ã‚’å¹ãé£›ã°ã™ã€‚
+            // CPUã®å ´åˆè‡ªèº«ãŒPlayerã®Tagã‚’ã‚‚ã£ã¦ãªã„ã‹ã¤ã‚²ãƒ¼ã‚¸ãŒæºœã¾ã£ã¦ã„ã¦ç›¸æ‰‹ã«è§¦ã‚Œã¦ã„ã‚‹ã¨ç›¸æ‰‹ã‚’å¹ãé£›ã°ã™
 
             if (_judge && this.CompareTag("Player") && _ult.AvailableFlag())
             {
@@ -85,11 +85,11 @@ public class AttackForce : MonoBehaviour
         {
             _touchCount++;
             Invoke("Judge", 0.3f);
-            Debug.Log("ƒ_ƒuƒ‹ƒ^ƒbƒv");
+            Debug.Log("ãƒ€ãƒ–ãƒ«ã‚¿ãƒƒãƒ—");
         }
     }
 
-    // ƒ_ƒuƒ‹ƒ^ƒbƒv‚µ‚½‚©‚Ç‚¤‚©‚Ì”»’è
+    // ãƒ€ãƒ–ãƒ«ã‚¿ãƒƒãƒ—ã—ãŸã‹ã©ã†ã‹ã®åˆ¤å®š
     void Judge()
     {
         if (_touchCount != 2)
