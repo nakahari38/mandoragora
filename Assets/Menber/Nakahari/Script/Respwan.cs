@@ -36,7 +36,10 @@ public class Respwan : MonoBehaviour
             _attackForce = collision.GetComponent<AttackForce>();
             _catch = collision.GetComponent<Catch>();
             _ult = collision.GetComponent<ULT>();
-            _ult.AddUltScore(-2);
+            if(_ult.UltScore > 2)
+            {
+                _ult.AddUltScore(-2);
+            }
             _attackForce._power -= 100;
             PlayerLost(collision);
             _rb2d.velocity = Vector3.zero;
@@ -46,50 +49,30 @@ public class Respwan : MonoBehaviour
             StartCoroutine(RespawnTime(collision));
         }
 
-        if (collision.gameObject.CompareTag("CPU1"))
+        if (!collision.gameObject.CompareTag("Player"))
         {
             _enemy = collision.GetComponent<EnemyAi>();
             _rb2d = collision.GetComponent<Rigidbody2D>();
             _attackForce = collision.GetComponent<AttackForce>();
             _catch = collision.GetComponent<Catch>();
             _ult = collision.GetComponent<ULT>();
-            _ult.AddUltScore(-2);
             _attackForce._power -= 100;
-            Cpu1Lost(collision);
-            _rb2d.velocity = Vector3.zero;
-            collision.gameObject.SetActive(false);
-            collision.transform.position = _enemy._firstPos;
-            collision.transform.rotation = _enemy._firstRot;
-            StartCoroutine(RespawnTime(collision));
-        }
-
-        if (collision.gameObject.CompareTag("CPU2"))
-        {
-            _enemy = collision.GetComponent<EnemyAi>();
-            _rb2d = collision.GetComponent<Rigidbody2D>();
-            _attackForce = collision.GetComponent<AttackForce>();
-            _catch = collision.GetComponent<Catch>();
-            _ult = collision.GetComponent<ULT>();
-            _ult.AddUltScore(-2);
-            _attackForce._power -= 100;
-            Cpu2Lost(collision);
-            _rb2d.velocity = Vector3.zero;
-            collision.gameObject.SetActive(false);
-            collision.transform.position = _enemy._firstPos;
-            collision.transform.rotation = _enemy._firstRot;
-            StartCoroutine(RespawnTime(collision));
-        }
-
-        if (collision.gameObject.CompareTag("CPU3"))
-        {
-            _enemy = collision.GetComponent<EnemyAi>();
-            _rb2d = collision.GetComponent<Rigidbody2D>();
-            _attackForce = collision.GetComponent<AttackForce>();
-            _catch = collision.GetComponent<Catch>();
-            _ult = collision.GetComponent<ULT>();
-            _ult.AddUltScore(-2);
-            _attackForce._power -= 100;
-            Cpu3Lost(collision);
+            if (_ult.UltScore > 2)
+            {
+                _ult.AddUltScore(-2);
+            }
+            if (collision.gameObject.CompareTag("CPU1"))
+            {
+                Cpu1Lost(collision);
+            }
+            else if (collision.gameObject.CompareTag("CPU2"))
+            {
+                Cpu2Lost(collision);
+            }
+            else
+            {
+                Cpu3Lost(collision);
+            }
             _rb2d.velocity = Vector3.zero;
             collision.gameObject.SetActive(false);
             collision.transform.position = _enemy._firstPos;
@@ -100,6 +83,7 @@ public class Respwan : MonoBehaviour
 
     IEnumerator RespawnTime(Collider2D collision)
     {
+        // ƒŠƒXƒ|[ƒ“‚É‚©‚©‚éŽžŠÔ
         _respawnCount = _respawnTime;
         while (_respawnCount > 0)
         {
@@ -197,7 +181,8 @@ public class Respwan : MonoBehaviour
 
     void Cpu1Lost(Collider2D collision)
     {
-        random = Random.Range(1, 4);
+
+        random = Random.Range(1, 3);
         if (_score._cpu1Score <= 3) return;
         if (_score._cpu1Score <= 24)
         {
@@ -276,8 +261,11 @@ public class Respwan : MonoBehaviour
             }
         }
     }
+
     void Cpu2Lost(Collider2D collision)
     {
+
+        random = Random.Range(1, 3);
         if (_score._cpu2Score <= 3) return;
         if (_score._cpu2Score <= 24)
         {
@@ -285,12 +273,15 @@ public class Respwan : MonoBehaviour
             switch (random)
             {
                 case 1:
+                    if (_catch._apple <= 3) return;
                     _catch._apple -= 4;
                     break;
                 case 2:
+                    if (_catch._orange <= 3) return;
                     _catch._orange -= 4;
                     break;
                 case 3:
+                    if (_catch._pair <= 3) return;
                     _catch._pair -= 4;
                     break;
             }
@@ -301,12 +292,15 @@ public class Respwan : MonoBehaviour
             switch (random)
             {
                 case 1:
+                    if (_catch._apple <= 7) return;
                     _catch._apple -= 8;
                     break;
                 case 2:
+                    if (_catch._orange <= 7) return;
                     _catch._orange -= 8;
                     break;
                 case 3:
+                    if (_catch._pair <= 7) return;
                     _catch._pair -= 8;
                     break;
             }
@@ -317,12 +311,15 @@ public class Respwan : MonoBehaviour
             switch (random)
             {
                 case 1:
+                    if (_catch._apple <= 11) return;
                     _catch._apple -= 12;
                     break;
                 case 2:
+                    if (_catch._orange <= 11) return;
                     _catch._orange -= 12;
                     break;
                 case 3:
+                    if (_catch._pair <= 11) return;
                     _catch._pair -= 12;
                     break;
             }
@@ -333,19 +330,25 @@ public class Respwan : MonoBehaviour
             switch (random)
             {
                 case 1:
+                    if (_catch._apple <= 15) return;
                     _catch._apple -= 16;
                     break;
                 case 2:
+                    if (_catch._orange <= 15) return;
                     _catch._orange -= 16;
                     break;
                 case 3:
+                    if (_catch._pair <= 15) return;
                     _catch._pair -= 16;
                     break;
             }
         }
     }
+
     void Cpu3Lost(Collider2D collision)
     {
+
+        random = Random.Range(1, 3);
         if (_score._cpu3Score <= 3) return;
         if (_score._cpu3Score <= 24)
         {
@@ -353,12 +356,15 @@ public class Respwan : MonoBehaviour
             switch (random)
             {
                 case 1:
+                    if (_catch._apple <= 3) return;
                     _catch._apple -= 4;
                     break;
                 case 2:
+                    if (_catch._orange <= 3) return;
                     _catch._orange -= 4;
                     break;
                 case 3:
+                    if (_catch._pair <= 3) return;
                     _catch._pair -= 4;
                     break;
             }
@@ -369,12 +375,15 @@ public class Respwan : MonoBehaviour
             switch (random)
             {
                 case 1:
+                    if (_catch._apple <= 7) return;
                     _catch._apple -= 8;
                     break;
                 case 2:
+                    if (_catch._orange <= 7) return;
                     _catch._orange -= 8;
                     break;
                 case 3:
+                    if (_catch._pair <= 7) return;
                     _catch._pair -= 8;
                     break;
             }
@@ -385,12 +394,15 @@ public class Respwan : MonoBehaviour
             switch (random)
             {
                 case 1:
+                    if (_catch._apple <= 11) return;
                     _catch._apple -= 12;
                     break;
                 case 2:
+                    if (_catch._orange <= 11) return;
                     _catch._orange -= 12;
                     break;
                 case 3:
+                    if (_catch._pair <= 11) return;
                     _catch._pair -= 12;
                     break;
             }
@@ -401,12 +413,15 @@ public class Respwan : MonoBehaviour
             switch (random)
             {
                 case 1:
+                    if (_catch._apple <= 15) return;
                     _catch._apple -= 16;
                     break;
                 case 2:
+                    if (_catch._orange <= 15) return;
                     _catch._orange -= 16;
                     break;
                 case 3:
+                    if (_catch._pair <= 15) return;
                     _catch._pair -= 16;
                     break;
             }

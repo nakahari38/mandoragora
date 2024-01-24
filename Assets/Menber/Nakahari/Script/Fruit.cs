@@ -56,8 +56,6 @@ public class Fruit : MonoBehaviour
         // 地面に触れたら力を加える
         if (collision.gameObject.CompareTag("Ground"))
         {
-            //StartCoroutine(Delete()); // フルーツが落ちてから10秒で消す場合のコード
-
             _force = new Vector2(_index*100, 0);  
         }
         // キャラクターに触れたら削除する

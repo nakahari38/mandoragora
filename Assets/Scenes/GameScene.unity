@@ -1697,8 +1697,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71274c2155c24a24a9bd37be3f44bc3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _apple: 0
-  _orange: 0
+  _apple: 10
+  _orange: 10
   _pair: 0
   _variable: 150
   _speed: 100
@@ -3727,9 +3727,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71274c2155c24a24a9bd37be3f44bc3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _apple: 0
+  _apple: 10
   _orange: 0
-  _pair: 0
+  _pair: 10
   _variable: 150
   _speed: 100
   _aiSpeed: 1000
@@ -6660,8 +6660,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _apple: 0
-  _orange: 0
-  _pair: 0
+  _orange: 10
+  _pair: 10
   _variable: 150
   _speed: 100
   _aiSpeed: 1000
