@@ -19,20 +19,20 @@ public class Result : MonoBehaviour
 
     void Start()
     {
-        // •Ô‚Á‚Ä‚«‚½1`4‚É‚æ‚Á‚Ä•\¦‚·‚éƒXƒRƒA‚ğ•Ï‚¦‚é
+        // è¿”ã£ã¦ããŸ1ï½4ã«ã‚ˆã£ã¦è¡¨ç¤ºã™ã‚‹ã‚¹ã‚³ã‚¢ã‚’å¤‰ãˆã‚‹
         switch (GetScore())
         {
             case 1:
-                _tmpG.text = "No.1\n‚æ‚­‚ª‚ñ‚Î‚è‚Ü‚µ‚½!\n‚½‚×‚½‚©‚¸F" + _score._playerScore;
+                _tmpG.text = "No.1\nã‚ˆããŒã‚“ã°ã‚Šã¾ã—ãŸ!\nãŸã¹ãŸã‹ãšï¼š" + _score._playerScore;
             break;
             case 2:
-                _tmpG.text = "No.1\n‚æ‚­‚ª‚ñ‚Î‚è‚Ü‚µ‚½!\n‚½‚×‚½‚©‚¸F" + _score._cpu1Score;
+                _tmpG.text = "No.1\nã‚ˆããŒã‚“ã°ã‚Šã¾ã—ãŸ!\nãŸã¹ãŸã‹ãšï¼š" + _score._cpu1Score;
             break;
             case 3:
-                _tmpG.text = "No.1\n‚æ‚­‚ª‚ñ‚Î‚è‚Ü‚µ‚½!\n‚½‚×‚½‚©‚¸F" + _score._cpu2Score;
+                _tmpG.text = "No.1\nã‚ˆããŒã‚“ã°ã‚Šã¾ã—ãŸ!\nãŸã¹ãŸã‹ãšï¼š" + _score._cpu2Score;
             break;
             case 4:
-                _tmpG.text = "No.1\n‚æ‚­‚ª‚ñ‚Î‚è‚Ü‚µ‚½!\n‚½‚×‚½‚©‚¸F" + _score._cpu3Score;
+                _tmpG.text = "No.1\nã‚ˆããŒã‚“ã°ã‚Šã¾ã—ãŸ!\nãŸã¹ãŸã‹ãšï¼š" + _score._cpu3Score;
             break;
         }
 
@@ -41,7 +41,7 @@ public class Result : MonoBehaviour
 
     public int GetScore()
     {
-        // ˆê”Ô‘½‚¢ƒXƒRƒA‚ğæ“¾‚µif•¶‚Å‚»‚ê‚¼‚ê‚ğ”äŠr‚µ1`4‚Å•Ô‚·
+        // ä¸€ç•ªå¤šã„ã‚¹ã‚³ã‚¢ã‚’å–å¾—ã—ifæ–‡ã§ãã‚Œãã‚Œã‚’æ¯”è¼ƒã—1ï½4ã§è¿”ã™
         _highScore = Mathf.Max(_score._playerScore, _score._cpu1Score, _score._cpu2Score, _score._cpu3Score);
         if (_highScore == _score._playerScore)
             return 1;
@@ -49,7 +49,7 @@ public class Result : MonoBehaviour
             return 2;
         else if (_highScore == _score._cpu2Score)
             return 3;
-        else@
+        elseã€€
             return 4;
     }
 }

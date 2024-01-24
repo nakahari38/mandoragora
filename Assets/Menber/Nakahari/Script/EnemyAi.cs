@@ -6,16 +6,16 @@ using UnityEngine;
 
 public class EnemyAi : MonoBehaviour
 {
-    // ƒXƒe[ƒ^ƒX
+    // ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
     [SerializeField]
-    float _move = 5; // ˆÚ“®
+    float _move = 5; // ç§»å‹•
 
     //State currentState = State.eat;
     //bool stateEnter = true;
 
     private Catch _catch;
 
-    // ƒQ[ƒW‚ª—­‚Ü‚Á‚Ä‚©‚ç‹Z”­“®‚Ü‚Å‚ÌŠÔ
+    // ã‚²ãƒ¼ã‚¸ãŒæºœã¾ã£ã¦ã‹ã‚‰æŠ€ç™ºå‹•ã¾ã§ã®æ™‚é–“
     [SerializeField]
     float _spaceTime;
 
@@ -65,7 +65,7 @@ public class EnemyAi : MonoBehaviour
     [SerializeField]
     private GameObject _flowerPot2;
 
-    // ˆÈ‰º‚Í‰¼’u‚«
+    // ä»¥ä¸‹ã¯ä»®ç½®ã
 
     // float skilGage = 0;
 
@@ -90,7 +90,7 @@ public class EnemyAi : MonoBehaviour
         if (_countDown._stop) return;
         _pace = _pace + Time.deltaTime;
 
-        // ˆê’èŠÔŠu‚Å‘_‚¤‘Šè‚ğ•Ï‚¦‚é
+        // ä¸€å®šé–“éš”ã§ç‹™ã†ç›¸æ‰‹ã‚’å¤‰ãˆã‚‹
         if (_pace > _sense)
         {
             int _random = Random.Range(1, 4);
@@ -116,7 +116,7 @@ public class EnemyAi : MonoBehaviour
             _pace = 0f;
         }
 
-        // ‘Šè‚Æ©g‚Ìpositon‚ğŒvZ‚µ‚»‚Ì•ûŒü‚ÉÅ‘å‘¬“x‚ğ§ŒÀ‚µ‚È‚ª‚ç—Í‚ğ‰Á‚¦‚é
+        // ç›¸æ‰‹ã¨è‡ªèº«ã®positonã‚’è¨ˆç®—ã—ãã®æ–¹å‘ã«æœ€å¤§é€Ÿåº¦ã‚’åˆ¶é™ã—ãªãŒã‚‰åŠ›ã‚’åŠ ãˆã‚‹
         tracking = _pos - this.transform.position;
         if(_rb2D.velocity.magnitude <= _catch._aiSpeed)
         {
@@ -137,7 +137,7 @@ public class EnemyAi : MonoBehaviour
         //Debug.Log(rb2D.velocity.magnitude);
     }
 
-    // Collider‚ÌÕ“Ë‚µ‚½ˆÊ’u‚ğŒvZ‚µ‚Ä‚Ô‚Â‚©‚Á‚½ˆÊ’u‚ÉƒGƒtƒFƒNƒg‚ğInstantiate‚·‚é
+    // Colliderã®è¡çªã—ãŸä½ç½®ã‚’è¨ˆç®—ã—ã¦ã¶ã¤ã‹ã£ãŸä½ç½®ã«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’Instantiateã™ã‚‹
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("CPU1") || collision.gameObject.CompareTag("CPU2") || collision.gameObject.CompareTag("CPU3"))

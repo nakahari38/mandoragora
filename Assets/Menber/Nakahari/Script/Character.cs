@@ -21,7 +21,7 @@ public class Character : MonoBehaviour
         if(_result == null) _result = GetComponent<Result>();
     }
 
-    // それぞれのスコアに応じて一番スコアが高いキャラクターをリザルトに表示する
+    // 縺昴ｌ縺槭ｌ縺ｮ繧ｹ繧ｳ繧｢縺ｫ蠢懊§縺ｦ荳逡ｪ繧ｹ繧ｳ繧｢縺碁ｫ倥＞繧ｭ繝｣繝ｩ繧ｯ繧ｿ繝ｼ繧偵Μ繧ｶ繝ｫ繝医↓陦ｨ遉ｺ縺吶ｋ
     private void Start()
     {
         switch (_result.GetScore())

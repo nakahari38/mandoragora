@@ -23,7 +23,7 @@ public class Fruit : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // ‰æ–Ê¶‰E‚Ì‚Ç‚¿‚ç‚Éo‚½‚©‚Ì”»’è
+        // ç”»é¢å·¦å³ã®ã©ã¡ã‚‰ã«å‡ºãŸã‹ã®åˆ¤å®š
         if (_rb2D == null) _rb2D = GetComponent<Rigidbody2D>();
         if(this.gameObject.transform.position.x <= -1)
         {
@@ -53,12 +53,12 @@ public class Fruit : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // ’n–Ê‚ÉG‚ê‚½‚ç—Í‚ğ‰Á‚¦‚é
+        // åœ°é¢ã«è§¦ã‚ŒãŸã‚‰åŠ›ã‚’åŠ ãˆã‚‹
         if (collision.gameObject.CompareTag("Ground"))
         {
             _force = new Vector2(_index*100, 0);  
         }
-        // ƒLƒƒƒ‰ƒNƒ^[‚ÉG‚ê‚½‚çíœ‚·‚é
+        // ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã«è§¦ã‚ŒãŸã‚‰å‰Šé™¤ã™ã‚‹
         if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("CPU1") || collision.gameObject.CompareTag("CPU2") || collision.gameObject.CompareTag("CPU3"))
         {
             _deadCallback?.Invoke(this);

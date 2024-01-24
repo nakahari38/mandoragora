@@ -25,10 +25,10 @@ public class WallBreak : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // FruitComponentˆÈŠO‚ğ‚Á‚Ä‚¢‚éê‡
+        // FruitComponentä»¥å¤–ã‚’æŒã£ã¦ã„ã‚‹å ´åˆ
         if (!collision.gameObject.GetComponent<Fruit>())
         {
-            // CatchComponent‚ğæ“¾‚µ‚Ä‚»‚ê‚¼‚ê‚Ì‡Œv’l‚ğŒvZ‚µ‚»‚Ì’l‚ª15‚ğ’´‚¦‚Ä‚¢‚½ê‡bool’l‚ğtrue‚É‚·‚é
+            // CatchComponentã‚’å–å¾—ã—ã¦ãã‚Œãã‚Œã®åˆè¨ˆå€¤ã‚’è¨ˆç®—ã—ãã®å€¤ãŒ15ã‚’è¶…ãˆã¦ã„ãŸå ´åˆboolå€¤ã‚’trueã«ã™ã‚‹
             Catch _othercatch = collision.gameObject.GetComponent<Catch>();
             if (_othercatch._apple + _othercatch._pair + _othercatch._orange >= 15)
             {
@@ -48,7 +48,7 @@ public class WallBreak : MonoBehaviour
 
     IEnumerator BreakTime(float time)
     {
-        // •Ç‚ğˆê’èŠÔŠu‚Å“_–Å‚³‚¹‚é
+        // å£ã‚’ä¸€å®šé–“éš”ã§ç‚¹æ»…ã•ã›ã‚‹
         _time += Time.deltaTime;
         var value = Mathf.Repeat(_time * _speed, _cycle);
         if (value < 0.5f)

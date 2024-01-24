@@ -46,7 +46,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         if(_countDown._stop) return;
-        // ƒ{ƒ^ƒ“‚ğ‰Ÿ‚µ‚Ä—£‚µ‚½êŠ‚ğæ“¾‚·‚é
+        // ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ã¦é›¢ã—ãŸå ´æ‰€ã‚’å–å¾—ã™ã‚‹
         if (Input.GetMouseButtonDown(0))
         {
             _startPos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
@@ -58,7 +58,7 @@ public class Player : MonoBehaviour
             GetDirection();
         }
 
-        // ‹Z‚ğg‚Á‚½‰ñ”‚ğæ“¾‚µ‚»‚ê‚É‰‚¶‚Ä”«‚ğ•\¦A”ñ•\¦‚É‚·‚é
+        // æŠ€ã‚’ä½¿ã£ãŸå›æ•°ã‚’å–å¾—ã—ãã‚Œã«å¿œã˜ã¦é‰¢ã‚’è¡¨ç¤ºã€éè¡¨ç¤ºã«ã™ã‚‹
         switch (_attackForce._count)
         {
             case 1:
@@ -74,16 +74,16 @@ public class Player : MonoBehaviour
 
     void FlickDirection()
     {
-        // æ“¾‚µ‚½•Ï”‚ğŒvZ‚µ‚Ç‚Ì’ö“xƒtƒŠƒbƒN‚µ‚½‚Ì‚©‚ğæ“¾‚·‚é
+        // å–å¾—ã—ãŸå¤‰æ•°ã‚’è¨ˆç®—ã—ã©ã®ç¨‹åº¦ãƒ•ãƒªãƒƒã‚¯ã—ãŸã®ã‹ã‚’å–å¾—ã™ã‚‹
         _flickValue_x = _endPos.x - _startPos.x;
         _flickValue_y = _endPos.y - _startPos.y;
-        //Debug.Log("x ƒtƒŠƒbƒN—Ê‚Í" + flickValue_x);
-        //Debug.Log("y ƒtƒŠƒbƒN—Ê‚Í" + flickValue_y);
+        //Debug.Log("x ãƒ•ãƒªãƒƒã‚¯é‡ã¯" + flickValue_x);
+        //Debug.Log("y ãƒ•ãƒªãƒƒã‚¯é‡ã¯" + flickValue_y);
     }
 
     void GetDirection()
     {
-        // ƒtƒŠƒbƒN‚µ‚½•ûŒü‚É—Í‚ğ‰Á‚¦‚é
+        // ãƒ•ãƒªãƒƒã‚¯ã—ãŸæ–¹å‘ã«åŠ›ã‚’åŠ ãˆã‚‹
         FlickDirection();
         force = new Vector2(_flickValue_x, _flickValue_y);
         _rb2D.AddForce(force * (_move + _catch._speed));

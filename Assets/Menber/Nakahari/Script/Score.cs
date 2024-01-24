@@ -15,7 +15,7 @@ public class Score : MonoBehaviour
 
     private void Awake()
     {
-        // ƒVƒ“ƒOƒ‹ƒgƒ“
+        // ã‚·ãƒ³ã‚°ãƒ«ãƒˆãƒ³
         if (instance == null)
         {
             instance = this;
@@ -38,10 +38,10 @@ public class Score : MonoBehaviour
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
-    // ƒV[ƒ“‘JˆÚ‚µ‚½Û‚É‚Ì‚İˆ—‚ªs‚í‚ê‚é
+    // ã‚·ãƒ¼ãƒ³é·ç§»ã—ãŸéš›ã«ã®ã¿å‡¦ç†ãŒè¡Œã‚ã‚Œã‚‹
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // “Á’è‚ÌƒV[ƒ“‚É”ò‚ñ‚¾Û‚É‘S‚Ä‚ÌƒXƒRƒA‚ğ0‚É‚·‚é
+        // ç‰¹å®šã®ã‚·ãƒ¼ãƒ³ã«é£›ã‚“ã éš›ã«å…¨ã¦ã®ã‚¹ã‚³ã‚¢ã‚’0ã«ã™ã‚‹
         if (SceneManager.GetActiveScene().name == "GameScene")
         {
             _playerScore = 0;

@@ -20,14 +20,14 @@ public class Effect : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // アニメーションの時間を取得。
+        // 繧｢繝九Γ繝ｼ繧ｷ繝ｧ繝ｳ縺ｮ譎る俣繧貞叙蠕励�
         _stateLength = _infAnim.length;
     }
 
     // Update is called once per frame
     void Update()
     {
-        // アニメーションが終ったら消す処理
+        // 繧｢繝九Γ繝ｼ繧ｷ繝ｧ繝ｳ縺檎ｵゅ▲縺溘ｉ豸医☆蜃ｦ逅�
         _time += Time.deltaTime;
         if(_time> _stateLength)
         {

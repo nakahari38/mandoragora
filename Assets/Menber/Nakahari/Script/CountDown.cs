@@ -9,7 +9,7 @@ public class CountDown : MonoBehaviour
     TextMeshProUGUI _tmpG;
 
     private float _count;
-    [Header("ƒJƒEƒ“ƒgƒ_ƒEƒ“")]
+    [Header("ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³")]
     [SerializeField]
     private int _time;
 
@@ -39,18 +39,18 @@ public class CountDown : MonoBehaviour
         Debug.Log(_stop);
     }
 
-    // Å‰‚ÌƒJƒEƒ“ƒgƒ_ƒEƒ“
+    // æœ€åˆã®ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³
     IEnumerator StartCountDown()
     {
         _tmpG.enabled = true;
         _count = _time;
         while (_count > 0)
         {
-            _tmpG.text = "‚³`‚Ä\n" + ((int)_count).ToString("0");
+            _tmpG.text = "ã•ï½žã¦\n" + ((int)_count).ToString("0");
             yield return new WaitForSeconds(1f);
             _count--;
         }
-        _tmpG.text = "\n‚¢‚½‚¾‚«‚Ü‚·I";
+        _tmpG.text = "\nã„ãŸã ãã¾ã™ï¼";
         _stop = false;
         _timer.time_obj.SetActive(true);
         _count = _time;
@@ -61,11 +61,11 @@ public class CountDown : MonoBehaviour
         }
         _tmpG.enabled = false;
     }
-    // ÅŒã‚ÌƒJƒEƒ“ƒgƒ_ƒEƒ“
+    // æœ€å¾Œã®ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³
     IEnumerator EndCountDown()
     {
         _count = _time;
-        _tmpG.text = "‚²‚¿‚»‚¤‚³‚Ü‚Å‚µ‚½I";
+        _tmpG.text = "ã”ã¡ãã†ã•ã¾ã§ã—ãŸï¼";
         _tmpG.enabled = true;
         _stop = true;
         while (_count > 0)

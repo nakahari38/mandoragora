@@ -28,7 +28,7 @@ public class Respwan : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // G‚ê‚½ƒIƒuƒWƒFƒNƒg‚ÌComponent‚ğæ“¾‚µ‚»‚ê‚¼‚ê‚Ìˆ—‚ğs‚¢A‰ŠúˆÊ’u‚ÉƒXƒ|[ƒ“‚³‚¹‚é
+        // è§¦ã‚ŒãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®Componentã‚’å–å¾—ã—ãã‚Œãã‚Œã®å‡¦ç†ã‚’è¡Œã„ã€åˆæœŸä½ç½®ã«ã‚¹ãƒãƒ¼ãƒ³ã•ã›ã‚‹
         if (collision.gameObject.CompareTag("Player"))
         {
             _player = collision.GetComponent<Player>();
@@ -83,7 +83,7 @@ public class Respwan : MonoBehaviour
 
     IEnumerator RespawnTime(Collider2D collision)
     {
-        // ƒŠƒXƒ|[ƒ“‚É‚©‚©‚éŠÔ
+        // ãƒªã‚¹ãƒãƒ¼ãƒ³ã«ã‹ã‹ã‚‹æ™‚é–“
         _respawnCount = _respawnTime;
         while (_respawnCount > 0)
         {
@@ -93,9 +93,9 @@ public class Respwan : MonoBehaviour
         collision.gameObject.SetActive(true);
     }
 
-    #region êŠO‚Éo‚½Û‚É‰Ê•¨‚ğÁ‚·ˆ—
-    // ƒ‰ƒ“ƒ_ƒ€‚É1`3‚ğæ“¾‚µ‚»‚Ì”‚É‚æ‚Á‚Ä“Á’è‚Ì‰Ê•¨‚ğŒ¸‚ç‚·
-    // ‡Œv’l‚É‚æ‚Á‚ÄŒ¸‚é‰Ê•¨‚Ì—Ê‚ª•Ï‚í‚é
+    #region å ´å¤–ã«å‡ºãŸéš›ã«æœç‰©ã‚’æ¶ˆã™å‡¦ç†
+    // ãƒ©ãƒ³ãƒ€ãƒ ã«1ï½3ã‚’å–å¾—ã—ãã®æ•°ã«ã‚ˆã£ã¦ç‰¹å®šã®æœç‰©ã‚’æ¸›ã‚‰ã™
+    // åˆè¨ˆå€¤ã«ã‚ˆã£ã¦æ¸›ã‚‹æœç‰©ã®é‡ãŒå¤‰ã‚ã‚‹
     void PlayerLost(Collider2D collision)
     {
         

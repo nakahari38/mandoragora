@@ -9,12 +9,12 @@ public class Catch : MonoBehaviour
     public int _pair;
 
     private AttackForce _attackForce;
-    [Header("Power‚Ì‘Œ¸’l")]
+    [Header("Powerã®å¢—æ¸›å€¤")]
     [SerializeField]
     private float _variable;
-    [Header("Player‚ÌƒXƒs[ƒh")]
+    [Header("Playerã®ã‚¹ãƒ”ãƒ¼ãƒ‰")]
     public float _speed;
-    [Header("AI‚ÌƒXƒs[ƒh")]
+    [Header("AIã®ã‚¹ãƒ”ãƒ¼ãƒ‰")]
     [SerializeField]
     public float _aiSpeed;
 
@@ -52,8 +52,8 @@ public class Catch : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // ‚»‚ê‚¼‚ê‚Ì‰Ê•¨‚ğæ‚Á‚½Û‚É“Á’è‚ÌƒXƒe[ƒ^ƒX‚É‘‰Á‚³‚¹‚éˆ—
-        // ‰Ê•¨‚ğæ‚Á‚½Û©g‚ÌScale‚É0.5f‚¸‚Â’Ç‰Á‚·‚é
+        // ãã‚Œãã‚Œã®æœç‰©ã‚’å–ã£ãŸéš›ã«ç‰¹å®šã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã«å¢—åŠ ã•ã›ã‚‹å‡¦ç†
+        // æœç‰©ã‚’å–ã£ãŸéš›è‡ªèº«ã®Scaleã«0.5fãšã¤è¿½åŠ ã™ã‚‹
         if (collision.gameObject.CompareTag("Apple"))
         {
             if (_ult.UltScore < 20)
