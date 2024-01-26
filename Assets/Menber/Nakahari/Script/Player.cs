@@ -50,6 +50,8 @@ public class Player : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             _startPos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+
+           // SoundManager.Instance.PlaySE(SESoundData.SE.Tapsound);
         }
 
         if (Input.GetMouseButtonUp(0))
@@ -70,6 +72,7 @@ public class Player : MonoBehaviour
             break;
         }
         //Debug.Log(rb2D.velocity.magnitude);
+       
     }
 
     void FlickDirection()

@@ -7,8 +7,8 @@ public class test : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SoundManager.Instance.PlayBGM(BGMSoundData.BGM.battle);
-        SoundManager.Instance.PlaySE(SESoundData.SE.attack);
+
+        SoundManager.Instance.PlayBGM(BGMSoundData.BGM.Title);
     }
 
     // Update is called once per frame

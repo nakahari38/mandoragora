@@ -65,6 +65,8 @@ public class Catch : MonoBehaviour
             this.transform.localScale +=  new Vector3(0.5f, 0.5f, 0.5f);
             //Debug.Log(_score);
             //Destroy(collision.gameObject);
+
+            SoundManager.Instance.PlaySE(SESoundData.SE.pear);
         }
 
         if (collision.gameObject.CompareTag("Orange"))
@@ -86,6 +88,8 @@ public class Catch : MonoBehaviour
             this.transform.localScale += new Vector3(0.5f, 0.5f, 0.5f);
             //Debug.Log(_score);
             //Destroy(collision.gameObject);
+
+            SoundManager.Instance.PlaySE(SESoundData.SE.pear);
         }
 
         if (collision.gameObject.CompareTag("Pair"))
@@ -104,6 +108,8 @@ public class Catch : MonoBehaviour
             this.transform.localScale += new Vector3(0.5f, 0.5f, 0.5f);
             //Debug.Log(_score);
             //Destroy(collision.gameObject);
+
+            SoundManager.Instance.PlaySE(SESoundData.SE.pear);
         }
     }
 }

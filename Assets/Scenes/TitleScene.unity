@@ -966,9 +966,9 @@ MonoBehaviour:
   - bgm: 0
     audioClip: {fileID: 8300000, guid: 5beb619c6a2ede1489c19d4a515599c4, type: 3}
     volume: 0.5
-  - bgm: 0
-    audioClip: {fileID: 0}
-    volume: 0
+  - bgm: 1
+    audioClip: {fileID: 8300000, guid: de98a988dcb2c5847afed244524cbe8c, type: 3}
+    volume: 0.5
   seSoundDatas:
   - se: 0
     audioClip: {fileID: 8300000, guid: cae26dcdfd689ff4c9cf7a3122ab8b82, type: 3}

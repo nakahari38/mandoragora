@@ -8,6 +8,7 @@ public class TitleButton : MonoBehaviour
     public void Title_button()
      {
         SceneChangr.scenechangrInstance._fade.SceneFade("TitleScene");
+        SoundManager.Instance.PlayBGM(BGMSoundData.BGM.Title);
      }
 
  }

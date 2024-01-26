@@ -8,6 +8,7 @@ public class StartButton : MonoBehaviour
     public void start_button()
      {
         SceneChangr.scenechangrInstance._fade.SceneFade("GameScene");
+        SoundManager.Instance.PlayBGM(BGMSoundData.BGM.battle);
      }
 
  }

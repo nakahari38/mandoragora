@@ -55,7 +55,7 @@ public class BGMSoundData
     public enum BGM
     {
         battle,
-        B,
+        Title,
         C, // ‚±‚ê‚ªƒ‰ƒxƒ‹‚É‚È‚é
     }
 
@@ -72,7 +72,9 @@ public class SESoundData
     {
         apple,
         attack,
-        pear, // ‚±‚ê‚ªƒ‰ƒxƒ‹‚É‚È‚é
+        pear,
+        orange,
+        Tapsound,// ‚±‚ê‚ªƒ‰ƒxƒ‹‚É‚È‚é
     }
 
     public SE se;
