@@ -21,6 +21,8 @@ public class AttackForce : MonoBehaviour
 
     private bool _judge = false;
 
+    private bool _ultUse = false;
+
     private Animator _animator;
 
     public int _count = 0;
@@ -58,34 +60,37 @@ public class AttackForce : MonoBehaviour
             // ゲージが溜まっている場合プレイヤーはダブルタップかつ相手に触れていると相手を吹き飛ばす。
             // CPUの場合自身がPlayerのTagをもってないかつゲージが溜まっていて相手に触れていると相手を吹き飛ばす
 
-            if (_judge && this.CompareTag("Player") && _ult.AvailableFlag())
+            if (_ultUse)
             {
-                _animator.SetTrigger("Ult");
                 _otherRb2d.AddForce(_directions * _blowAway, ForceMode2D.Impulse);
-                _ult.ResetUltScore();
-                _animator.SetTrigger("Normal");
-                _count++;
-            }
-
-            if(!this.CompareTag("Player") && _ult.AvailableFlag())
-            {
-                _animator.SetTrigger("Ult");
-                _otherRb2d.AddForce(_directions * _blowAway, ForceMode2D.Impulse);
-                _ult.ResetUltScore();
-                _animator.SetTrigger("Normal");
-                _count++;
             }
         }
     }
 
     private void Update()
     {
-        
+        if(_judge && this.CompareTag("Player") && _ult.AvailableFlag())
+        {
+            _animator.SetTrigger("Ult");
+            _ultUse = true;
+            _ult.ResetUltScore();
+            _animator.SetTrigger("Normal");
+            _count++;
+        }
+
+        if (!this.CompareTag("Player") && _ult.AvailableFlag())
+        {
+            _animator.SetTrigger("Ult");
+            _ult.ResetUltScore();
+            _animator.SetTrigger("Normal");
+            _count++;
+        }
+
         if (Input.GetMouseButtonDown(0))
         {
             _touchCount++;
             Invoke("Judge", 0.3f);
-            Debug.Log("ダブルタップ");
+            
         }
     }
 
