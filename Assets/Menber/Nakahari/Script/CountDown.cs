@@ -18,7 +18,7 @@ public class CountDown : MonoBehaviour
     [SerializeField]
     Timer _timer;
 
-    bool end;
+    bool end = true;
 
     public bool _stop = true;
 
@@ -35,7 +35,10 @@ public class CountDown : MonoBehaviour
     private void Update()
     {
         if (_timer.end == false) return;
-        StartCoroutine(EndCountDown());
+        if(end == true)
+        {
+            StartCoroutine(EndCountDown());
+        }
         Debug.Log(_stop);
     }
 
@@ -64,6 +67,7 @@ public class CountDown : MonoBehaviour
     // 最後のカウントダウン
     IEnumerator EndCountDown()
     {
+        end = false;
         _count = _time;
         _tmpG.text = "ごちそうさまでした！";
         _tmpG.enabled = true;

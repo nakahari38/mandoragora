@@ -1125,8 +1125,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f34a7bb582d88a4e96537150f17340f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  oldsecond: 1
-  second: 30
+  oldsecond: 0
+  second: 3
   time_obj: {fileID: 495343056}
   end: 0
   _countDown: {fileID: 2032032258}
@@ -6419,7 +6419,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e868e290702567c4598a0021640627f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FadeTime: 2
+  FadeTime: 1
   PrefabFadeCanvas: {fileID: 8569072829824836943, guid: 2c03b420ee05a4a489663f7b382c0070, type: 3}
 --- !u!4 &1809430030
 Transform:
