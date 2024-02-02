@@ -10,7 +10,7 @@ public class UltImageMask : MonoBehaviour
     private ULT _ult;
 
     [SerializeField]
-    private int MultiNum = 20;
+    private float MultiNum = 20;
 
     RectMask2D rectMask2D;
 

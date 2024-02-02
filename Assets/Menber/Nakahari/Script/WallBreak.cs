@@ -4,24 +4,16 @@ using UnityEngine;
 
 public class WallBreak : MonoBehaviour
 {
-    BoxCollider2D bc2d;
-    [SerializeField]
-    private float _cycle = 1;
-    [SerializeField]
-    private float _speed = 1f;
-    public Color _color;
-    public SpriteRenderer _spriteRenderer;
     private float _time;
+    Animator _animator;
+    int _count = 0;
+    BoxCollider2D _bc2;
+    bool _isTrigger = false;
 
     private void Start()
     {
-        bc2d = GetComponent<BoxCollider2D>();
-        _spriteRenderer = GetComponent<SpriteRenderer>();
-        _color.r = 1;
-        _color.g = 0;
-        _color.b = 0;
-        _color.a = 0f;
-        _spriteRenderer.color = _color;
+        if(_animator == null) _animator = GetComponent<Animator>();
+        if(_bc2 == null)  _bc2 = GetComponent<BoxCollider2D>();
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -32,38 +24,38 @@ public class WallBreak : MonoBehaviour
             Catch _othercatch = collision.gameObject.GetComponent<Catch>();
             if (_othercatch._apple + _othercatch._pair + _othercatch._orange >= 15)
             {
-                bc2d.isTrigger = true;
+                _isTrigger = true;
             }
         }
     }
 
     private void Update()
     {
-        if(bc2d.isTrigger)
+        if(_isTrigger)
         {
-            StartCoroutine(BreakTime(5f));
+            _isTrigger = false;
+            _bc2.isTrigger = true;
+            StartCoroutine(BreakTime());
         }
         
     }
 
-    IEnumerator BreakTime(float time)
+    IEnumerator BreakTime()
     {
-        // 壁を一定間隔で点滅させる
-        _time += Time.deltaTime;
-        var value = Mathf.Repeat(_time * _speed, _cycle);
-        if (value < 0.5f)
+        _animator.SetTrigger("Break");
+        _count = 5;
+        while(_count > 0)
         {
-            _color.a = Mathf.Lerp(0f, 0.5f, value * 2);
+            yield return new WaitForSeconds(1f);
+            _count--;
         }
-        else
+        _count = 1;
+        _animator.SetTrigger("Return");
+        while (_count > 0)
         {
-            _color.a = Mathf.Lerp(0.5f, 0f, (value - 0.5f) * 2);
+            yield return new WaitForSeconds(1f);
+            _count--;
         }
-        //_color.a = 1;
-        _spriteRenderer.color = _color;
-        yield return new WaitForSeconds(time);
-        _color.a = 0f;
-        _spriteRenderer.color = _color;
-        bc2d.isTrigger = false;
+        _bc2.isTrigger = false;
     }
 }
