@@ -51,7 +51,7 @@ public class Player : MonoBehaviour
         {
             _startPos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
 
-           // SoundManager.Instance.PlaySE(SESoundData.SE.Tapsound);
+           SoundManager.Instance.PlaySE(SESoundData.SE.Tapsound);
         }
 
         if (Input.GetMouseButtonUp(0))

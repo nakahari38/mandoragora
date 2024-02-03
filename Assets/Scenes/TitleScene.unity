@@ -972,10 +972,22 @@ MonoBehaviour:
   seSoundDatas:
   - se: 0
     audioClip: {fileID: 8300000, guid: cae26dcdfd689ff4c9cf7a3122ab8b82, type: 3}
-    volume: 0.5
+    volume: 1
+  - se: 4
+    audioClip: {fileID: 8300000, guid: 845c0e7a07417fa43a458a1858f7cd5e, type: 3}
+    volume: 1
+  - se: 2
+    audioClip: {fileID: 8300000, guid: f13bb2d548e4b9d43abc4fd5a0e45a7c, type: 3}
+    volume: 1
   - se: 1
     audioClip: {fileID: 8300000, guid: 3c626094f39923c4cb1ba59e5f6abd16, type: 3}
-    volume: 0.5
+    volume: 1
+  - se: 0
+    audioClip: {fileID: 8300000, guid: cae26dcdfd689ff4c9cf7a3122ab8b82, type: 3}
+    volume: 1
+  - se: 3
+    audioClip: {fileID: 8300000, guid: a9192fd11ffaa1a4a8825eaa288584c0, type: 3}
+    volume: 1
   masterVolume: 1
   bgmMasterVolume: 1
   seMasterVolume: 1

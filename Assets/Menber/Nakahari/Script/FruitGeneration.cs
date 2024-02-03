@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class FruitGeneration: MonoBehaviour
 {
-    Vector2 Spawn;
     [SerializeField]
     private Transform _rangeA;
     [SerializeField]
@@ -21,7 +20,7 @@ public class FruitGeneration: MonoBehaviour
     List<GameObject> _fruitList = new List<GameObject>();
 
     [SerializeField]
-    public List<Fruit> _fruitView = new List<Fruit>();
+    public static readonly List<Fruit> _fruitView = new List<Fruit>();
 
     [SerializeField]
     Player _player;

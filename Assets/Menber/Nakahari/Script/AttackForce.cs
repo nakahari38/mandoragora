@@ -42,6 +42,7 @@ public class AttackForce : MonoBehaviour
             if (_otherRb2d == null) return;
 
             Vector2 _directions = (collision.transform.position - this.transform.position).normalized;
+            SoundManager.Instance.PlaySE(SESoundData.SE.attack);
 
             _otherRb2d.AddForce(_directions * _power / _endurance, ForceMode2D.Impulse);
 

@@ -1,11 +1,66 @@
 using Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using static LoadCSV;
+using static UnityEngine.GraphicsBuffer;
+
+public enum SelectType
+{
+    player,
+    enemy1,
+    enemy2,
+    apple,
+    pear,
+    orange
+}
 
 public class EnemyAi : MonoBehaviour
 {
+    public List<LoadCSV.LoveParams> ItemLoves = new List<LoadCSV.LoveParams> ();
+
+    /*public SelectType Select()
+    {
+
+        foreach (var loveParams in _loveLists)
+        {
+            LoveParams copiedParams = new LoveParams
+            {
+                PlayerLove = loveParams.PlayerLove,
+                Enemy1Love = loveParams.Enemy1Love,
+                Enemy2Love = loveParams.Enemy2Love,
+                AppleLove = loveParams.AppleLove,
+                PearLove = loveParams.PearLove,
+                OrangeLove = loveParams.OrangeLove
+            };
+
+            ItemLoves.Add(copiedParams);
+        }
+
+        foreach (var loveParams in ItemLoves)
+        {
+            Debug.Log("-------------------------------------");
+            Debug.Log("PlayerLove: " + loveParams.PlayerLove);
+            Debug.Log("Enemy1Love: " + loveParams.Enemy1Love);
+            Debug.Log("Enemy2Love: " + loveParams.Enemy2Love);
+            Debug.Log("AppleLove: " + loveParams.AppleLove);
+            Debug.Log("PearLove: " + loveParams.PearLove);
+            Debug.Log("OrangeLove: " + loveParams.OrangeLove);
+        }
+        var appleLists = FruitGeneration._fruitView.Where(item => item.gameObject.tag.Equals("Apple"))
+                            .ToList();
+        var appleDistance = appleLists
+                                .Select(item => (item.transform.localPosition - target.transform.localposition).distance)
+                                .ToList();
+        var minIndex = appleDistance.IndexOf(appleDistance.Min());
+        var applMinObject = appleLists[minIndex];
+        var appleMinDistance = Mathf.Floor(appleDistance[minIndex]);
+        ItemLoves[(int)SelectType.apple] += 30 - appleMinDistance;
+        return SelectType.player;
+    }*/
+
     // ステータス
     [SerializeField]
     float _move = 5; // 移動
@@ -45,12 +100,6 @@ public class EnemyAi : MonoBehaviour
 
     Vector2 _hitPos;
 
-    //[SerializeField]
-    //int times;
-    //
-    //[SerializeField]
-    //int _count;
-
     Vector2 tracking;
 
     Vector3 _pos;
@@ -65,17 +114,9 @@ public class EnemyAi : MonoBehaviour
     [SerializeField]
     private GameObject _flowerPot2;
 
-    // 以下は仮置き
-
-    // float skilGage = 0;
-
-
-
-    //private float rotationSpeed = 300.0f;
-
-
     private void Start()
     {
+        
         if (_rb2D == null) _rb2D = GetComponent<Rigidbody2D>();
 
         if (_catch == null) _catch = GetComponent<Catch>();

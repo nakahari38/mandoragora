@@ -57,5 +57,6 @@ public class WallBreak : MonoBehaviour
             _count--;
         }
         _bc2.isTrigger = false;
+        _animator.SetTrigger("Normal");
     }
 }

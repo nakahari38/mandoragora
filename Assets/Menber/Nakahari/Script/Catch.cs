@@ -66,7 +66,7 @@ public class Catch : MonoBehaviour
             //Debug.Log(_score);
             //Destroy(collision.gameObject);
 
-            //SoundManager.Instance.PlaySE(SESoundData.SE.pear);
+            SoundManager.Instance.PlaySE(SESoundData.SE.apple);
         }
 
         if (collision.gameObject.CompareTag("Orange"))
@@ -89,7 +89,7 @@ public class Catch : MonoBehaviour
             //Debug.Log(_score);
             //Destroy(collision.gameObject);
 
-            //SoundManager.Instance.PlaySE(SESoundData.SE.pear);
+            SoundManager.Instance.PlaySE(SESoundData.SE.orange);
         }
 
         if (collision.gameObject.CompareTag("Pair"))
@@ -109,7 +109,7 @@ public class Catch : MonoBehaviour
             //Debug.Log(_score);
             //Destroy(collision.gameObject);
 
-            //SoundManager.Instance.PlaySE(SESoundData.SE.pear);
+            SoundManager.Instance.PlaySE(SESoundData.SE.pear);
         }
     }
 }
