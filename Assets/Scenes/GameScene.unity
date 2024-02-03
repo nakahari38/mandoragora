@@ -1215,7 +1215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   oldsecond: 0
-  second: 1
+  second: 30
   time_obj: {fileID: 495343056}
   end: 0
   _countDown: {fileID: 2032032258}
@@ -1941,12 +1941,11 @@ MonoBehaviour:
   _firstRot: {x: 0, y: 0, z: 0, w: 0}
   _player: {fileID: 1601717866}
   _cpu1: {fileID: 2027440860}
-  _cpu2: {fileID: 730770642}
-  _cpu3: {fileID: 1217393223}
+  _cpu2: {fileID: 1217393223}
   random: 0
   _countDown: {fileID: 2032032258}
   _effect: {fileID: 8939049549354073688, guid: e9fb75697bcada44eb04df2ee1ac8269, type: 3}
-  _sense: 5
+  _sense: 2
   _flowerPot1: {fileID: 1293573227}
   _flowerPot2: {fileID: 616942089}
 --- !u!114 &730770637
@@ -3785,11 +3784,10 @@ MonoBehaviour:
   _player: {fileID: 1601717866}
   _cpu1: {fileID: 2027440860}
   _cpu2: {fileID: 730770642}
-  _cpu3: {fileID: 1217393223}
   random: 0
   _countDown: {fileID: 2032032258}
   _effect: {fileID: 8939049549354073688, guid: e9fb75697bcada44eb04df2ee1ac8269, type: 3}
-  _sense: 5
+  _sense: 2
   _flowerPot1: {fileID: 586885910}
   _flowerPot2: {fileID: 607200423}
 --- !u!114 &1217393218
@@ -7159,13 +7157,12 @@ MonoBehaviour:
   _firstPos: {x: 0, y: 0, z: 0}
   _firstRot: {x: 0, y: 0, z: 0, w: 0}
   _player: {fileID: 1601717866}
-  _cpu1: {fileID: 2027440860}
-  _cpu2: {fileID: 730770642}
-  _cpu3: {fileID: 1217393223}
+  _cpu1: {fileID: 730770642}
+  _cpu2: {fileID: 1217393223}
   random: 0
   _countDown: {fileID: 2032032258}
   _effect: {fileID: 8939049549354073688, guid: e9fb75697bcada44eb04df2ee1ac8269, type: 3}
-  _sense: 5
+  _sense: 2
   _flowerPot1: {fileID: 1926081152}
   _flowerPot2: {fileID: 1221644695}
 --- !u!50 &2027440858
@@ -7258,7 +7255,6 @@ MonoBehaviour:
   - {fileID: 7758820391544356616, guid: 152cf5f73b9d1cb4386c2f045f63f18f, type: 3}
   - {fileID: 2830158405039699893, guid: 1b546fc8f0c502a4d9405f313125c80a, type: 3}
   - {fileID: 5817132974932801243, guid: 7b333d6dde2a7844f90e81e98b42ce45, type: 3}
-  _fruitView: []
   _player: {fileID: 0}
   _enemyAi: {fileID: 0}
   _countDown: {fileID: 2032032258}

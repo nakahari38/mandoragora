@@ -19,47 +19,80 @@ public enum SelectType
 
 public class EnemyAi : MonoBehaviour
 {
-    public List<LoadCSV.LoveParams> ItemLoves = new List<LoadCSV.LoveParams> ();
+    public List<LoadCSV.LoveParams> ItemLoves = new List<LoadCSV.LoveParams>();
 
-    /*public SelectType Select()
+    public SelectType Select()
     {
+        // ItemLoves の初期化
+        ItemLoves.Clear();
 
-        foreach (var loveParams in _loveLists)
+        // フルーツごとに処理をまとめたメソッドを呼び出す
+        UpdateLoveByFruitTag("Apple", SelectType.apple);
+        UpdateLoveByFruitTag("Pear", SelectType.pear);
+        UpdateLoveByFruitTag("Orange", SelectType.orange);
+
+        // Calculate the sum of the specific property (e.g., AppleLove, PearLove, OrangeLove)
+        var sum = ItemLoves.Sum(loveParams => loveParams.AppleLove + loveParams.PearLove + loveParams.OrangeLove);
+
+        var rnd = Random.Range(0, sum);
+        var selectIndex = 0;
+        foreach (var (loves, index) in ItemLoves.Select((loves, index) => (loves.AppleLove + loves.PearLove + loves.OrangeLove, index)))
         {
-            LoveParams copiedParams = new LoveParams
+            if (rnd < loves)
             {
-                PlayerLove = loveParams.PlayerLove,
-                Enemy1Love = loveParams.Enemy1Love,
-                Enemy2Love = loveParams.Enemy2Love,
-                AppleLove = loveParams.AppleLove,
-                PearLove = loveParams.PearLove,
-                OrangeLove = loveParams.OrangeLove
-            };
-
-            ItemLoves.Add(copiedParams);
+                selectIndex = index;
+                break;
+            }
         }
 
-        foreach (var loveParams in ItemLoves)
+        return (SelectType)selectIndex;
+    }
+
+    // タグごとに果物の情報とポジションを更新するメソッド
+    private Vector3 UpdateLoveByFruitTag(string fruitTag, SelectType selectType)
+    {
+        var fruitLists = FruitGeneration._fruitView
+            .Where(item => item.gameObject.tag.Equals(fruitTag))
+            .ToList();
+
+        Vector3 fruitPosition = Vector3.zero; // 追加: フルーツの位置を格納する変数
+
+        if (fruitLists.Any()) // リストが空でないか確認
         {
-            Debug.Log("-------------------------------------");
-            Debug.Log("PlayerLove: " + loveParams.PlayerLove);
-            Debug.Log("Enemy1Love: " + loveParams.Enemy1Love);
-            Debug.Log("Enemy2Love: " + loveParams.Enemy2Love);
-            Debug.Log("AppleLove: " + loveParams.AppleLove);
-            Debug.Log("PearLove: " + loveParams.PearLove);
-            Debug.Log("OrangeLove: " + loveParams.OrangeLove);
+            var minObject = fruitLists
+                .OrderBy(item => (item.transform.localPosition - this.transform.localPosition).magnitude)
+                .FirstOrDefault();
+
+            if (minObject != null)
+            {
+                fruitPosition = minObject.transform.position; // フルーツの位置を取得
+
+                // Ensure ItemLoves has enough elements
+                while (ItemLoves.Count <= (int)selectType)
+                {
+                    ItemLoves.Add(new LoveParams());
+                }
+
+                // Update love based on fruit type
+                switch (selectType)
+                {
+                    case SelectType.apple:
+                        ItemLoves[(int)selectType].AppleLove += 30 + (int)Mathf.Floor(Vector3.Distance(fruitPosition, this.transform.localPosition));
+                        break;
+                    case SelectType.pear:
+                        ItemLoves[(int)selectType].PearLove += 30 + (int)Mathf.Floor(Vector3.Distance(fruitPosition, this.transform.localPosition));
+                        break;
+                    case SelectType.orange:
+                        ItemLoves[(int)selectType].OrangeLove += 30 + (int)Mathf.Floor(Vector3.Distance(fruitPosition, this.transform.localPosition));
+                        break;
+                }
+            }
         }
-        var appleLists = FruitGeneration._fruitView.Where(item => item.gameObject.tag.Equals("Apple"))
-                            .ToList();
-        var appleDistance = appleLists
-                                .Select(item => (item.transform.localPosition - target.transform.localposition).distance)
-                                .ToList();
-        var minIndex = appleDistance.IndexOf(appleDistance.Min());
-        var applMinObject = appleLists[minIndex];
-        var appleMinDistance = Mathf.Floor(appleDistance[minIndex]);
-        ItemLoves[(int)SelectType.apple] += 30 - appleMinDistance;
-        return SelectType.player;
-    }*/
+
+        return fruitPosition; // フルーツの位置を返す
+    }
+
+
 
     // ステータス
     [SerializeField]
@@ -85,8 +118,6 @@ public class EnemyAi : MonoBehaviour
     Transform _cpu1;
     [SerializeField]
     Transform _cpu2;
-    [SerializeField]
-    Transform _cpu3;
 
     public int random;
 
@@ -116,11 +147,11 @@ public class EnemyAi : MonoBehaviour
 
     private void Start()
     {
-        
+
         if (_rb2D == null) _rb2D = GetComponent<Rigidbody2D>();
 
         if (_catch == null) _catch = GetComponent<Catch>();
-        if(_attackForce == null) _attackForce = GetComponent<AttackForce>();
+        if (_attackForce == null) _attackForce = GetComponent<AttackForce>();
 
         _firstPos = this.transform.position;
         _firstRot = this.transform.rotation;
@@ -134,32 +165,43 @@ public class EnemyAi : MonoBehaviour
         // 一定間隔で狙う相手を変える
         if (_pace > _sense)
         {
-            int _random = Random.Range(1, 4);
-            switch (_random)
+            foreach(var item in ItemLoves)
             {
-                case 1:
+                Debug.Log(this.gameObject.name + "プレイヤー:" + item.PlayerLove);
+                Debug.Log(this.gameObject.name + "エネミー１:" + item.Enemy1Love);
+                Debug.Log(this.gameObject.name + "エネミー２:" + item.Enemy2Love);
+                Debug.Log(this.gameObject.name + "リンゴ:" + item.AppleLove);
+                Debug.Log(this.gameObject.name + "ナシ:" + item.PearLove);
+                Debug.Log(this.gameObject.name + "オレンジ:" + item.OrangeLove);
+            }
+            Debug.Log(Select());
+            switch(Select())
+            {
+                case SelectType.player:
                     _pos = _player.position;
                     break;
-                case 2:
-                    if (this.gameObject.CompareTag("CPU1")) return;
+                case SelectType.enemy1:
                     _pos = _cpu1.position;
-                    break;
-                case 3:
-                    if (this.gameObject.CompareTag("CPU2")) return;
+                    break; 
+                case SelectType.enemy2:
                     _pos = _cpu2.position;
                     break;
-                case 4:
-                    if (this.gameObject.CompareTag("CPU3")) return;
-                    _pos = _cpu3.position;
+                case SelectType.apple:
+                    _pos = UpdateLoveByFruitTag("Apple", Select());
                     break;
-
+                case SelectType.pear:
+                    _pos = UpdateLoveByFruitTag("Pear", Select());
+                    break;
+                case SelectType.orange:
+                    _pos = UpdateLoveByFruitTag("Orange", Select());
+                    break;
             }
             _pace = 0f;
         }
 
         // 相手と自身のpositonを計算しその方向に最大速度を制限しながら力を加える
         tracking = _pos - this.transform.position;
-        if(_rb2D.velocity.magnitude <= _catch._aiSpeed)
+        if (_rb2D.velocity.magnitude <= _catch._aiSpeed)
         {
             _rb2D.AddForce(tracking * _move, ForceMode2D.Force);
         }
