@@ -165,7 +165,7 @@ public class EnemyAi : MonoBehaviour
         // 一定間隔で狙う相手を変える
         if (_pace > _sense)
         {
-            foreach(var item in ItemLoves)
+            /*foreach(var item in ItemLoves)
             {
                 Debug.Log(this.gameObject.name + "プレイヤー:" + item.PlayerLove);
                 Debug.Log(this.gameObject.name + "エネミー１:" + item.Enemy1Love);
@@ -173,30 +173,32 @@ public class EnemyAi : MonoBehaviour
                 Debug.Log(this.gameObject.name + "リンゴ:" + item.AppleLove);
                 Debug.Log(this.gameObject.name + "ナシ:" + item.PearLove);
                 Debug.Log(this.gameObject.name + "オレンジ:" + item.OrangeLove);
-            }
-            Debug.Log(Select());
-            switch(Select())
-            {
-                case SelectType.player:
-                    _pos = _player.position;
-                    break;
-                case SelectType.enemy1:
-                    _pos = _cpu1.position;
-                    break; 
-                case SelectType.enemy2:
-                    _pos = _cpu2.position;
-                    break;
-                case SelectType.apple:
-                    _pos = UpdateLoveByFruitTag("Apple", Select());
-                    break;
-                case SelectType.pear:
-                    _pos = UpdateLoveByFruitTag("Pear", Select());
-                    break;
-                case SelectType.orange:
-                    _pos = UpdateLoveByFruitTag("Orange", Select());
-                    break;
-            }
+            }*/
+            
             _pace = 0f;
+        }
+
+        Debug.Log(this.gameObject.name + ":" + Select());
+        switch (Select())
+        {
+            case SelectType.player:
+                _pos = _player.position;
+                break;
+            case SelectType.enemy1:
+                _pos = _cpu1.position;
+                break;
+            case SelectType.enemy2:
+                _pos = _cpu2.position;
+                break;
+            case SelectType.apple:
+                _pos = UpdateLoveByFruitTag("Apple", Select());
+                break;
+            case SelectType.pear:
+                _pos = UpdateLoveByFruitTag("Pear", Select());
+                break;
+            case SelectType.orange:
+                _pos = UpdateLoveByFruitTag("Orange", Select());
+                break;
         }
 
         // 相手と自身のpositonを計算しその方向に最大速度を制限しながら力を加える
