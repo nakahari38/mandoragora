@@ -145,6 +145,7 @@ public class EnemyAi : MonoBehaviour
     [SerializeField]
     private GameObject _flowerPot2;
 
+
     private void Start()
     {
 

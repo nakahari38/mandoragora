@@ -26,6 +26,33 @@ public class Respwan : MonoBehaviour
 
     ULT _ult;
 
+    [SerializeField]
+    GameObject _effect1;
+    [SerializeField]
+    GameObject _effect2;
+    [SerializeField]
+    GameObject _effect3;
+    [SerializeField]
+    GameObject _effect4;
+
+    [SerializeField]
+    GameObject _playerObj;
+    [SerializeField]
+    GameObject _cpu1Obj;
+    [SerializeField]
+    GameObject _cpu2Obj;
+    [SerializeField]
+    GameObject _cpu3Obj;
+
+    [SerializeField]
+    GameObject _pos1;
+    [SerializeField]
+    GameObject _pos2;
+    [SerializeField]
+    GameObject _pos3;
+    [SerializeField]
+    GameObject _pos4;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // 触れたオブジェクトのComponentを取得しそれぞれの処理を行い、初期位置にスポーンさせる
@@ -41,8 +68,9 @@ public class Respwan : MonoBehaviour
                 _ult.AddUltScore(-2);
             }
             _attackForce._power -= 100;
-            PlayerLost(collision);
+            Lost(collision,_score._playerScore);
             _rb2d.velocity = Vector3.zero;
+            _rb2d.bodyType = RigidbodyType2D.Kinematic;
             collision.gameObject.SetActive(false);
             collision.transform.position = _player._firstPos;
             collision.transform.rotation = _player._firstRot;
@@ -63,17 +91,18 @@ public class Respwan : MonoBehaviour
             }
             if (collision.gameObject.CompareTag("CPU1"))
             {
-                Cpu1Lost(collision);
+                Lost(collision,_score._cpu1Score);
             }
             else if (collision.gameObject.CompareTag("CPU2"))
             {
-                Cpu2Lost(collision);
+                Lost(collision, _score._cpu2Score);
             }
             else
             {
-                Cpu3Lost(collision);
+                Lost(collision, _score._cpu3Score);
             }
             _rb2d.velocity = Vector3.zero;
+            _rb2d.bodyType = RigidbodyType2D.Kinematic;
             collision.gameObject.SetActive(false);
             collision.transform.position = _enemy._firstPos;
             collision.transform.rotation = _enemy._firstRot;
@@ -84,24 +113,46 @@ public class Respwan : MonoBehaviour
     IEnumerator RespawnTime(Collider2D collision)
     {
         // リスポーンにかかる時間
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            var Ins =  Instantiate(_effect1, new Vector2(_pos1.transform.position.x, _pos1.transform.position.y), Quaternion.identity);
+            Ins.transform.localScale = _playerObj.transform.localScale;
+        }
+        else if (collision.gameObject.CompareTag("CPU1"))
+        {
+            var Ins = Instantiate(_effect2, new Vector2(_pos2.transform.position.x, _pos2.transform.position.y), Quaternion.identity);
+            Ins.transform.localScale = _cpu1Obj.transform.localScale;
+        }
+        else if (collision.gameObject.CompareTag("CPU2"))
+        {
+            var Ins = Instantiate(_effect3, new Vector2(_pos3.transform.position.x, _pos3.transform.position.y), Quaternion.identity);
+            Ins.transform.localScale = _cpu2Obj.transform.localScale;
+        }
+        else
+        {
+            var Ins = Instantiate(_effect4, new Vector2(_pos4.transform.position.x, _pos4.transform.position.y + 250), Quaternion.identity);
+            Ins.transform.localScale = _cpu3Obj.transform.localScale;
+        }
+
+        collision.gameObject.SetActive(true);
         _respawnCount = _respawnTime;
         while (_respawnCount > 0)
         {
             yield return new WaitForSeconds(1f);
             _respawnCount--;
         }
-        collision.gameObject.SetActive(true);
+        _rb2d.bodyType = RigidbodyType2D.Dynamic;
     }
 
     #region 場外に出た際に果物を消す処理
     // ランダムに1～3を取得しその数によって特定の果物を減らす
     // 合計値によって減る果物の量が変わる
-    void PlayerLost(Collider2D collision)
+    void Lost(Collider2D collision,int score)
     {
         
         random = Random.Range(1, 3);
-        if (_score._playerScore <= 3) return;
-        if (_score._playerScore <= 24)
+        if (score <= 3) return;
+        if (score <= 24)
         {
             collision.transform.localScale -= new Vector3(2f, 2f, 2f);
             switch (random)
@@ -120,7 +171,7 @@ public class Respwan : MonoBehaviour
                     break;
             }
         }
-        else if (_score._playerScore <= 48)
+        else if (score <= 48)
         {
             collision.transform.localScale -= new Vector3(4f, 4f, 4f);
             switch (random)
@@ -139,7 +190,7 @@ public class Respwan : MonoBehaviour
                     break;
             }
         }
-        else if (_score._playerScore <= 72)
+        else if (score <= 72)
         {
             collision.transform.localScale -= new Vector3(6f, 6f, 6f);
             switch (random)
@@ -178,255 +229,5 @@ public class Respwan : MonoBehaviour
             }
         }
     }
-
-    void Cpu1Lost(Collider2D collision)
-    {
-
-        random = Random.Range(1, 3);
-        if (_score._cpu1Score <= 3) return;
-        if (_score._cpu1Score <= 24)
-        {
-            collision.transform.localScale -= new Vector3(2f, 2f, 2f);
-            switch (random)
-            {
-                case 1:
-                    if (_catch._apple <= 3) return;
-                    _catch._apple -= 4;
-                    break;
-                case 2:
-                    if (_catch._orange <= 3) return;
-                    _catch._orange -= 4;
-                    break;
-                case 3:
-                    if (_catch._pair <= 3) return;
-                    _catch._pair -= 4;
-                    break;
-            }
-        }
-        else if (_score._cpu1Score <= 48)
-        {
-            collision.transform.localScale -= new Vector3(4f, 4f, 4f);
-            switch (random)
-            {
-                case 1:
-                    if (_catch._apple <= 7) return;
-                    _catch._apple -= 8;
-                    break;
-                case 2:
-                    if (_catch._orange <= 7) return;
-                    _catch._orange -= 8;
-                    break;
-                case 3:
-                    if (_catch._pair <= 7) return;
-                    _catch._pair -= 8;
-                    break;
-            }
-        }
-        else if (_score._cpu1Score <= 72)
-        {
-            collision.transform.localScale -= new Vector3(6f, 6f, 6f);
-            switch (random)
-            {
-                case 1:
-                    if (_catch._apple <= 11) return;
-                    _catch._apple -= 12;
-                    break;
-                case 2:
-                    if (_catch._orange <= 11) return;
-                    _catch._orange -= 12;
-                    break;
-                case 3:
-                    if (_catch._pair <= 11) return;
-                    _catch._pair -= 12;
-                    break;
-            }
-        }
-        else
-        {
-            collision.transform.localScale -= new Vector3(8f, 8f, 8f);
-            switch (random)
-            {
-                case 1:
-                    if (_catch._apple <= 15) return;
-                    _catch._apple -= 16;
-                    break;
-                case 2:
-                    if (_catch._orange <= 15) return;
-                    _catch._orange -= 16;
-                    break;
-                case 3:
-                    if (_catch._pair <= 15) return;
-                    _catch._pair -= 16;
-                    break;
-            }
-        }
-    }
-
-    void Cpu2Lost(Collider2D collision)
-    {
-
-        random = Random.Range(1, 3);
-        if (_score._cpu2Score <= 3) return;
-        if (_score._cpu2Score <= 24)
-        {
-            collision.transform.localScale -= new Vector3(2f, 2f, 2f);
-            switch (random)
-            {
-                case 1:
-                    if (_catch._apple <= 3) return;
-                    _catch._apple -= 4;
-                    break;
-                case 2:
-                    if (_catch._orange <= 3) return;
-                    _catch._orange -= 4;
-                    break;
-                case 3:
-                    if (_catch._pair <= 3) return;
-                    _catch._pair -= 4;
-                    break;
-            }
-        }
-        else if (_score._cpu2Score <= 48)
-        {
-            collision.transform.localScale -= new Vector3(4f, 4f, 4f);
-            switch (random)
-            {
-                case 1:
-                    if (_catch._apple <= 7) return;
-                    _catch._apple -= 8;
-                    break;
-                case 2:
-                    if (_catch._orange <= 7) return;
-                    _catch._orange -= 8;
-                    break;
-                case 3:
-                    if (_catch._pair <= 7) return;
-                    _catch._pair -= 8;
-                    break;
-            }
-        }
-        else if (_score._cpu2Score <= 72)
-        {
-            collision.transform.localScale -= new Vector3(6f, 6f, 6f);
-            switch (random)
-            {
-                case 1:
-                    if (_catch._apple <= 11) return;
-                    _catch._apple -= 12;
-                    break;
-                case 2:
-                    if (_catch._orange <= 11) return;
-                    _catch._orange -= 12;
-                    break;
-                case 3:
-                    if (_catch._pair <= 11) return;
-                    _catch._pair -= 12;
-                    break;
-            }
-        }
-        else
-        {
-            collision.transform.localScale -= new Vector3(8f, 8f, 8f);
-            switch (random)
-            {
-                case 1:
-                    if (_catch._apple <= 15) return;
-                    _catch._apple -= 16;
-                    break;
-                case 2:
-                    if (_catch._orange <= 15) return;
-                    _catch._orange -= 16;
-                    break;
-                case 3:
-                    if (_catch._pair <= 15) return;
-                    _catch._pair -= 16;
-                    break;
-            }
-        }
-    }
-
-    void Cpu3Lost(Collider2D collision)
-    {
-
-        random = Random.Range(1, 3);
-        if (_score._cpu3Score <= 3) return;
-        if (_score._cpu3Score <= 24)
-        {
-            collision.transform.localScale -= new Vector3(2f, 2f, 2f);
-            switch (random)
-            {
-                case 1:
-                    if (_catch._apple <= 3) return;
-                    _catch._apple -= 4;
-                    break;
-                case 2:
-                    if (_catch._orange <= 3) return;
-                    _catch._orange -= 4;
-                    break;
-                case 3:
-                    if (_catch._pair <= 3) return;
-                    _catch._pair -= 4;
-                    break;
-            }
-        }
-        else if (_score._cpu3Score <= 48)
-        {
-            collision.transform.localScale -= new Vector3(4f, 4f, 4f);
-            switch (random)
-            {
-                case 1:
-                    if (_catch._apple <= 7) return;
-                    _catch._apple -= 8;
-                    break;
-                case 2:
-                    if (_catch._orange <= 7) return;
-                    _catch._orange -= 8;
-                    break;
-                case 3:
-                    if (_catch._pair <= 7) return;
-                    _catch._pair -= 8;
-                    break;
-            }
-        }
-        else if (_score._cpu3Score <= 72)
-        {
-            collision.transform.localScale -= new Vector3(6f, 6f, 6f);
-            switch (random)
-            {
-                case 1:
-                    if (_catch._apple <= 11) return;
-                    _catch._apple -= 12;
-                    break;
-                case 2:
-                    if (_catch._orange <= 11) return;
-                    _catch._orange -= 12;
-                    break;
-                case 3:
-                    if (_catch._pair <= 11) return;
-                    _catch._pair -= 12;
-                    break;
-            }
-        }
-        else
-        {
-            collision.transform.localScale -= new Vector3(8f, 8f, 8f);
-            switch (random)
-            {
-                case 1:
-                    if (_catch._apple <= 15) return;
-                    _catch._apple -= 16;
-                    break;
-                case 2:
-                    if (_catch._orange <= 15) return;
-                    _catch._orange -= 16;
-                    break;
-                case 3:
-                    if (_catch._pair <= 15) return;
-                    _catch._pair -= 16;
-                    break;
-            }
-        }
-    }
-
     #endregion
 }
