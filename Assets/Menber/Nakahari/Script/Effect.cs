@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RespwanEffect : MonoBehaviour
+public class Effect : MonoBehaviour
 {
     Animator _animator;
 
@@ -10,7 +10,7 @@ public class RespwanEffect : MonoBehaviour
 
     float _stateLength = 0;
     float _time = 0;
-    
+
     private void Awake()
     {
         _animator = GetComponent<Animator>();

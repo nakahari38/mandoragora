@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3244575747460020280}
   - component: {fileID: 9217530393946244110}
   - component: {fileID: 1187160675319557143}
-  - component: {fileID: 110747904022866090}
+  - component: {fileID: -2088338196170109185}
   m_Layer: 0
   m_Name: RespawnPinkEffect
   m_TagString: Untagged
@@ -106,7 +106,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
---- !u!114 &110747904022866090
+--- !u!114 &-2088338196170109185
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -115,6 +115,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 4770129970933624080}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45c8c6c8408075c459056746125bf5bf, type: 3}
+  m_Script: {fileID: 11500000, guid: 7af153b73c366534e8a93fa8a1364341, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

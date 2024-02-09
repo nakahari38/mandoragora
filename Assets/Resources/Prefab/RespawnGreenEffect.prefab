@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6169811223789491006}
   - component: {fileID: 6105263078390904310}
   - component: {fileID: 8362776024555651718}
-  - component: {fileID: 1606031293914586303}
+  - component: {fileID: 2515901935088763957}
   m_Layer: 0
   m_Name: RespawnGreenEffect
   m_TagString: Untagged
@@ -106,7 +106,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
---- !u!114 &1606031293914586303
+--- !u!114 &2515901935088763957
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -115,6 +115,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 5232380958107652711}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45c8c6c8408075c459056746125bf5bf, type: 3}
+  m_Script: {fileID: 11500000, guid: 7af153b73c366534e8a93fa8a1364341, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

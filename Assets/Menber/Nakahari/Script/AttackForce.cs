@@ -25,12 +25,41 @@ public class AttackForce : MonoBehaviour
 
     private Animator _animator;
 
+    AnimatorStateInfo _infAnim;
+
+    float _stateLength = 0;
+    float _time = 0;
+
     public int _count = 0;
+
+    [SerializeField]
+    GameObject _effect1;
+    [SerializeField]
+    GameObject _effect2;
+    [SerializeField]
+    GameObject _effect3;
+    [SerializeField]
+    GameObject _effect4;
+
+    [SerializeField]
+    GameObject _pos1;
+    [SerializeField]
+    GameObject _pos2;
+    [SerializeField]
+    GameObject _pos3;
+    [SerializeField]
+    GameObject _pos4;
+
+    private float _countTime;
+
 
     private void Start()
     {
         if(_ult == null) _ult = GetComponent<ULT>();
         if(_animator == null) _animator = GetComponent<Animator>();
+        _infAnim = _animator.GetCurrentAnimatorStateInfo(0);
+        _stateLength = _infAnim.length;
+        Debug.Log(_infAnim);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -70,29 +99,53 @@ public class AttackForce : MonoBehaviour
 
     private void Update()
     {
-        if(_judge && this.CompareTag("Player") && _ult.AvailableFlag())
+        if (_judge && this.CompareTag("Player") && _ult.AvailableFlag())
         {
-            _animator.SetTrigger("Ult");
-            _ultUse = true;
-            _ult.ResetUltScore();
-            _animator.SetTrigger("Normal");
-            _count++;
+            EffectView(_effect1, _pos1);
         }
 
-        if (!this.CompareTag("Player") && _ult.AvailableFlag())
+        if (this.gameObject.CompareTag("CPU1") && _ult.AvailableFlag())
         {
-            _animator.SetTrigger("Ult");
-            _ult.ResetUltScore();
-            _animator.SetTrigger("Normal");
-            _count++;
+            EffectView(_effect2, _pos2);
+        }
+        if (this.gameObject.CompareTag("CPU1") && _ult.AvailableFlag())
+        {
+            EffectView(_effect3, _pos3);
+        }
+        if (this.gameObject.CompareTag("CPU3") && _ult.AvailableFlag())
+        {
+            EffectView(_effect4, _pos4);
         }
 
         if (Input.GetMouseButtonDown(0))
         {
             _touchCount++;
             Invoke("Judge", 0.3f);
-            
         }
+
+        Debug.Log(this.gameObject.tag + ":" + _ultUse);
+    }
+    
+    IEnumerator Timer()
+    {
+        _countTime = 3;
+        while (_countTime > 0)
+        {
+            yield return new WaitForSeconds(1f);
+            _countTime--;
+        }
+        _ultUse = false;
+    }
+
+    void EffectView(GameObject obj, GameObject pos)
+    {
+        _animator.SetTrigger("Ult");
+        Instantiate(obj, new Vector2(pos.transform.position.x, pos.transform.position.y), Quaternion.identity);
+        _ultUse = true;
+        _ult.ResetUltScore();
+        _animator.SetTrigger("Normal");
+        _count++;
+        StartCoroutine(Timer());
     }
 
     // ダブルタップしたかどうかの判定

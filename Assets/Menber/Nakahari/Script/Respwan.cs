@@ -8,7 +8,10 @@ public class Respwan : MonoBehaviour
     Player _player;
     EnemyAi _enemy;
 
-    Rigidbody2D _rb2d;
+    Rigidbody2D _playerRb2d;
+    Rigidbody2D _cpu1Rb2d;
+    Rigidbody2D _cpu2Rb2d;
+    Rigidbody2D _cpu3Rb2d;
 
     [SerializeField]
     int _respawnTime;
@@ -59,58 +62,64 @@ public class Respwan : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             _player = collision.GetComponent<Player>();
-            _rb2d = collision.GetComponent<Rigidbody2D>();
+            _playerRb2d = collision.GetComponent<Rigidbody2D>();
             _attackForce = collision.GetComponent<AttackForce>();
             _catch = collision.GetComponent<Catch>();
             _ult = collision.GetComponent<ULT>();
-            if(_ult.UltScore > 2)
-            {
-                _ult.AddUltScore(-2);
-            }
-            _attackForce._power -= 100;
+            Judge(collision, _player._firstPos, _player._firstRot,_playerRb2d);
             Lost(collision,_score._playerScore);
-            _rb2d.velocity = Vector3.zero;
-            _rb2d.bodyType = RigidbodyType2D.Kinematic;
-            collision.gameObject.SetActive(false);
-            collision.transform.position = _player._firstPos;
-            collision.transform.rotation = _player._firstRot;
-            StartCoroutine(RespawnTime(collision));
         }
 
-        if (!collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("CPU1"))
         {
             _enemy = collision.GetComponent<EnemyAi>();
-            _rb2d = collision.GetComponent<Rigidbody2D>();
+            _cpu1Rb2d = collision.GetComponent<Rigidbody2D>();
             _attackForce = collision.GetComponent<AttackForce>();
             _catch = collision.GetComponent<Catch>();
             _ult = collision.GetComponent<ULT>();
-            _attackForce._power -= 100;
-            if (_ult.UltScore > 2)
-            {
-                _ult.AddUltScore(-2);
-            }
-            if (collision.gameObject.CompareTag("CPU1"))
-            {
-                Lost(collision,_score._cpu1Score);
-            }
-            else if (collision.gameObject.CompareTag("CPU2"))
-            {
-                Lost(collision, _score._cpu2Score);
-            }
-            else
-            {
-                Lost(collision, _score._cpu3Score);
-            }
-            _rb2d.velocity = Vector3.zero;
-            _rb2d.bodyType = RigidbodyType2D.Kinematic;
-            collision.gameObject.SetActive(false);
-            collision.transform.position = _enemy._firstPos;
-            collision.transform.rotation = _enemy._firstRot;
-            StartCoroutine(RespawnTime(collision));
+            Judge(collision,_enemy._firstPos, _enemy._firstRot,_cpu1Rb2d);
+            Lost(collision, _score._cpu1Score);
+        }
+
+        if (collision.gameObject.CompareTag("CPU2"))
+        {
+            _enemy = collision.GetComponent<EnemyAi>();
+            _cpu2Rb2d = collision.GetComponent<Rigidbody2D>();
+            _attackForce = collision.GetComponent<AttackForce>();
+            _catch = collision.GetComponent<Catch>();
+            _ult = collision.GetComponent<ULT>();
+            Judge(collision, _enemy._firstPos, _enemy._firstRot, _cpu2Rb2d);
+            Lost(collision, _score._cpu2Score);
+        }
+
+        if (collision.gameObject.CompareTag("CPU3"))
+        {
+            _enemy = collision.GetComponent<EnemyAi>();
+            _cpu3Rb2d = collision.GetComponent<Rigidbody2D>();
+            _attackForce = collision.GetComponent<AttackForce>();
+            _catch = collision.GetComponent<Catch>();
+            _ult = collision.GetComponent<ULT>();
+            Judge(collision, _enemy._firstPos, _enemy._firstRot, _cpu3Rb2d);
+            Lost(collision, _score._cpu3Score);
         }
     }
 
-    IEnumerator RespawnTime(Collider2D collision)
+    void Judge(Collider2D collision, Vector3 pos, Quaternion rot, Rigidbody2D rb2d)
+    {
+        _attackForce._power -= 100;
+        if (_ult.UltScore > 2)
+        {
+            _ult.AddUltScore(-2);
+        }
+        rb2d.velocity = Vector3.zero;
+        rb2d.bodyType = RigidbodyType2D.Kinematic;
+        collision.gameObject.SetActive(false);
+        collision.transform.position = pos;
+        collision.transform.rotation = rot;
+        StartCoroutine(RespawnTime(collision,rb2d));
+    }
+
+    IEnumerator RespawnTime(Collider2D collision, Rigidbody2D rb2d)
     {
         // リスポーンにかかる時間
         if (collision.gameObject.CompareTag("Player"))
@@ -128,9 +137,9 @@ public class Respwan : MonoBehaviour
             var Ins = Instantiate(_effect3, new Vector2(_pos3.transform.position.x, _pos3.transform.position.y), Quaternion.identity);
             Ins.transform.localScale = _cpu2Obj.transform.localScale;
         }
-        else
+        else if(collision.gameObject.CompareTag("CPU3"))
         {
-            var Ins = Instantiate(_effect4, new Vector2(_pos4.transform.position.x, _pos4.transform.position.y + 250), Quaternion.identity);
+            var Ins = Instantiate(_effect4, new Vector2(_pos4.transform.position.x, _pos4.transform.position.y), Quaternion.identity);
             Ins.transform.localScale = _cpu3Obj.transform.localScale;
         }
 
@@ -141,7 +150,7 @@ public class Respwan : MonoBehaviour
             yield return new WaitForSeconds(1f);
             _respawnCount--;
         }
-        _rb2d.bodyType = RigidbodyType2D.Dynamic;
+        rb2d.bodyType = RigidbodyType2D.Dynamic;
     }
 
     #region 場外に出た際に果物を消す処理
