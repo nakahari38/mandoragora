@@ -4081,7 +4081,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: de997c4f5a5a99545954d95af5271dd5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 605
+      value: -530
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: de997c4f5a5a99545954d95af5271dd5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4223,7 +4223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71274c2155c24a24a9bd37be3f44bc3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _apple: 5
+  _apple: 0
   _orange: 0
   _pair: 0
   _variable: 150
@@ -5871,7 +5871,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _apple: 0
-  _orange: 20
+  _orange: 0
   _pair: 0
   _variable: 150
   _speed: 5
@@ -7664,7 +7664,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a4e9738174e7f840b1d510ce1ad9ea8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UltScore: 20
+  UltScore: 0
 --- !u!114 &2027440855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7678,7 +7678,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _apple: 0
-  _orange: 15
+  _orange: 0
   _pair: 0
   _variable: 150
   _speed: 100

@@ -25,11 +25,6 @@ public class AttackForce : MonoBehaviour
 
     private Animator _animator;
 
-    AnimatorStateInfo _infAnim;
-
-    float _stateLength = 0;
-    float _time = 0;
-
     public int _count = 0;
 
     [SerializeField]
@@ -57,9 +52,6 @@ public class AttackForce : MonoBehaviour
     {
         if(_ult == null) _ult = GetComponent<ULT>();
         if(_animator == null) _animator = GetComponent<Animator>();
-        _infAnim = _animator.GetCurrentAnimatorStateInfo(0);
-        _stateLength = _infAnim.length;
-        Debug.Log(_infAnim);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

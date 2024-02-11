@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class WallBreak : MonoBehaviour
 {
-    private float _time;
     Animator _animator;
     int _count = 0;
     BoxCollider2D _bc2;
