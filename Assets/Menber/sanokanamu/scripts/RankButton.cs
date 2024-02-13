@@ -8,6 +8,7 @@ public class RankButton : MonoBehaviour
     public void Rank_button()
     {
         FadeManager.Instance.LoadScene("ResultScene", 1.0f);
+        SoundManager.Instance.PlayBGM(BGMSoundData.BGM.Title);
     }
 
 }
