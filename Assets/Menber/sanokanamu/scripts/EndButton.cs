@@ -6,6 +6,6 @@ public class EndButton : MonoBehaviour
 {
     public void End_Button()
     {
-        SceneChangr.scenechangrInstance._fade.SceneFade("RankScene");
+        FadeManager.Instance.LoadScene("RankScene", 1.0f);
     }
 }
