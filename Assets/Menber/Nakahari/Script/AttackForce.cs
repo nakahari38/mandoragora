@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms;
+using static UnityEditor.PlayerSettings;
 
 public class AttackForce : MonoBehaviour
 {
@@ -46,6 +48,8 @@ public class AttackForce : MonoBehaviour
     GameObject _pos4;
 
     private float _countTime;
+
+    private float _space;
 
 
     private void Start()
@@ -100,7 +104,7 @@ public class AttackForce : MonoBehaviour
         {
             EffectView(_effect2, _pos2);
         }
-        if (this.gameObject.CompareTag("CPU1") && _ult.AvailableFlag())
+        if (this.gameObject.CompareTag("CPU2") && _ult.AvailableFlag())
         {
             EffectView(_effect3, _pos3);
         }
@@ -132,13 +136,32 @@ public class AttackForce : MonoBehaviour
     void EffectView(GameObject obj, GameObject pos)
     {
         _animator.SetTrigger("Ult");
-        Instantiate(obj, new Vector2(pos.transform.position.x, pos.transform.position.y), Quaternion.identity);
+        StartCoroutine(EffectTimes(obj, pos));
         _ultUse = true;
         _ult.ResetUltScore();
         _animator.SetTrigger("Normal");
         _count++;
         StartCoroutine(Timer());
     }
+
+    IEnumerator EffectTimes(GameObject obj, GameObject pos)
+    {
+        _space = 1;
+        while (_space > 0)
+        {
+            yield return new WaitForSeconds(0.5f);
+            _countTime = 3;
+            while (_countTime > 0)
+            {
+                Instantiate(obj, new Vector2(pos.transform.position.x, pos.transform.position.y), Quaternion.identity);
+                yield return new WaitForSeconds(0.5f);
+                _countTime--;
+            }
+            _space--;
+
+        }
+    }
+
 
     // ダブルタップしたかどうかの判定
     void Judge()
