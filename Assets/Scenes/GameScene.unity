@@ -1900,18 +1900,18 @@ MonoBehaviour:
   _respawnTime: 1
   random: 0
   _score: {fileID: 2109273579}
-  _effect1: {fileID: 0}
-  _effect2: {fileID: 0}
-  _effect3: {fileID: 0}
-  _effect4: {fileID: 0}
-  _playerObj: {fileID: 0}
-  _cpu1Obj: {fileID: 0}
-  _cpu2Obj: {fileID: 0}
-  _cpu3Obj: {fileID: 0}
-  _pos1: {fileID: 0}
-  _pos2: {fileID: 0}
-  _pos3: {fileID: 0}
-  _pos4: {fileID: 0}
+  _effect1: {fileID: 4770129970933624080, guid: 43e477096ac414b468af3d58d7612f88, type: 3}
+  _effect2: {fileID: 8911740094847004264, guid: 6a565df3c32e7c843b24b4023ce99c3e, type: 3}
+  _effect3: {fileID: 5232380958107652711, guid: ffd6f65f64ebc884f85a67812654fe71, type: 3}
+  _effect4: {fileID: 7969028011111744708, guid: fd0d66880fa49b848b8cfa89285fe38d, type: 3}
+  _playerObj: {fileID: 1601717858}
+  _cpu1Obj: {fileID: 2027440852}
+  _cpu2Obj: {fileID: 730770633}
+  _cpu3Obj: {fileID: 1217393214}
+  _pos1: {fileID: 977162026}
+  _pos2: {fileID: 1800042162}
+  _pos3: {fileID: 854396319}
+  _pos4: {fileID: 1070697945}
 --- !u!1 &697882498
 GameObject:
   m_ObjectHideFlags: 0
@@ -5687,7 +5687,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: f81c33dd1d1b653449ee00e18d24de87, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1333
+      value: -1500
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: f81c33dd1d1b653449ee00e18d24de87, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6102,18 +6102,18 @@ MonoBehaviour:
   _respawnTime: 1
   random: 0
   _score: {fileID: 2109273579}
-  _effect1: {fileID: 0}
-  _effect2: {fileID: 0}
-  _effect3: {fileID: 0}
-  _effect4: {fileID: 0}
-  _playerObj: {fileID: 0}
-  _cpu1Obj: {fileID: 0}
-  _cpu2Obj: {fileID: 0}
-  _cpu3Obj: {fileID: 0}
-  _pos1: {fileID: 0}
-  _pos2: {fileID: 0}
-  _pos3: {fileID: 0}
-  _pos4: {fileID: 0}
+  _effect1: {fileID: 4770129970933624080, guid: 43e477096ac414b468af3d58d7612f88, type: 3}
+  _effect2: {fileID: 8911740094847004264, guid: 6a565df3c32e7c843b24b4023ce99c3e, type: 3}
+  _effect3: {fileID: 5232380958107652711, guid: ffd6f65f64ebc884f85a67812654fe71, type: 3}
+  _effect4: {fileID: 7969028011111744708, guid: fd0d66880fa49b848b8cfa89285fe38d, type: 3}
+  _playerObj: {fileID: 1601717858}
+  _cpu1Obj: {fileID: 2027440852}
+  _cpu2Obj: {fileID: 730770633}
+  _cpu3Obj: {fileID: 1217393214}
+  _pos1: {fileID: 977162026}
+  _pos2: {fileID: 1800042162}
+  _pos3: {fileID: 854396319}
+  _pos4: {fileID: 1070697945}
 --- !u!1 &1664965562
 GameObject:
   m_ObjectHideFlags: 0
