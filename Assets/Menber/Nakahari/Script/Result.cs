@@ -20,6 +20,6 @@ public class Result : MonoBehaviour
 
     void Start()
     {
-        _tmpG.text = "No.1\nよくがんばりました!\nたべたかず：" + _score._playerScore;
+        _tmpG.text = "\nよくがんばりました!\nあなたがたべたかず:" + _score._playerScore;
     }
 }
